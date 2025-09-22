@@ -1,0 +1,684 @@
+<!-- Header Partial: No <html>, <head>, <body>, <link>, or <script> tags needed -->
+<style>
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+}
+/* Top Banner */
+.top-banner {
+    background-color: #666;
+    color: white;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 14px;
+}
+.top-banner a {
+    color: #00d4aa;
+    text-decoration: none;
+}
+/* Header */
+.header {
+    background-color: white;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+    z-index: 1000;
+}
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+}
+/* Logo */
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+}
+/* Navigation */
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.nav-item {
+    position: relative;
+}
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.nav-link:hover,
+.nav-link.active {
+    border-bottom-color: #ff4444;
+}
+.nav-link.active {
+    color: #000;
+}
+/* Right side icons */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.search-container {
+    position: relative;
+}
+.search-input {
+    padding: 12px 20px 12px 45px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    width: 300px;
+    font-size: 14px;
+    outline: none;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+.search-input:focus {
+    border-color: #ccc;
+    background-color: white;
+}
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 18px;
+}
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    position: relative;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+.icon-btn:hover {
+    background-color: #f0f0f0;
+}
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ff4444;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+}
+/* Dropdown Menu */
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    min-width: 800px;
+    z-index: 1000;
+}
+.nav-item:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.dropdown-content {
+    display: flex;
+    padding: 30px;
+    gap: 40px;
+}
+.dropdown-section {
+    flex: 1;
+}
+.dropdown-header {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff4444;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.dropdown-list {
+    list-style: none;
+}
+.dropdown-list li {
+    margin-bottom: 12px;
+}
+.dropdown-list a {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+.dropdown-list a:hover {
+    color: #ff4444;
+}
+.shop-all-link {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+.shop-all-link a {
+    font-weight: bold;
+    color: #000;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.promo-section {
+    background: linear-gradient(135deg, #d4a574 0%, #8b6f3e 100%);
+    border-radius: 12px;
+    padding: 25px;
+    color: white;
+    max-width: 280px;
+}
+.promo-section h3 {
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+.promo-section p {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+.promo-btn {
+    background: none;
+    border: 2px solid white;
+    color: white;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.promo-btn:hover {
+    background-color: white;
+    color: #8b6f3e;
+}
+@media (max-width: 768px) {
+    .header-container {
+        padding: 10px 15px;
+    }
+    .nav {
+        display: none;
+    }
+    .search-input {
+        width: 200px;
+    }
+    .dropdown {
+        min-width: 300px;
+    }
+    .dropdown-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .logo {
+        font-size: 24px;
+    }
+    .header-actions {
+        gap: 10px;
+    }
+}
+@media (max-width: 480px) {
+    .search-input {
+        width: 150px;
+        padding: 10px 15px 10px 35px;
+    }
+    .search-icon {
+        left: 10px;
+        font-size: 16px;
+    }
+    .icon-btn {
+        font-size: 20px;
+        padding: 6px;
+    }
+    .dropdown {
+        min-width: 250px;
+    }
+}
+</style>
+    <!-- Jinja2 template variables -->
+    {% set nav_items = [
+        {
+            'name': 'Clothing',
+            'active': true,
+            'dropdown': {
+                'sections': [
+                    {
+                        'title': 'WOMEN TOPS',
+                        'subitems': [
+                            'T-Shirts', 'Blouses', 'Sandals', 'Tank Tops ', 'Crop Tops', 'Tube Tops', 'Tunics', 'Wrap Tops', 'Peplum Tops', 'Bodysuits', 'Sweaters', 'Cardigans', 'Sweatshirts  Hoodies' 
+                        ]
+                    }           
+                ], 
+                'categories': ['Tops', 'Bottoms', 'Dresses', 'Outwear', 'Activewear', 'Sleepwear', 'Undergarments', 'Swimwear', 'Occasionwear', 'Traditionalwear'],
+                'promo': {
+                    'title': 'READY. SET. GIFT.',
+                    'subtitle': 'MORE THAN ESSENTIAL',
+                    'description': 'Extra roominess makes the On My Level Carryall the must-have for all your must-haves.',
+                    'button': 'SHOP SHOES'
+                }
+            }
+        },
+        {
+            'name': 'Shoes',
+            'dropdown': {
+                'sections': [
+                    {
+                        'title': 'HEELS',
+                        'subitems': [
+                            'Stilettos', 'Pumps', 'Block Heels', 'Wedge Heels', 'Kitten Heels', 'Platform Heels', 'Ankle Strap Heels', 'Mules', 'Peep Toe Heels', 'Slingbacks'
+                        ]
+                    }
+                ],
+                'categories': [
+                    'Heels',
+                    'Flats',
+                    'Sandals',
+                    'Sneakers',
+                    'Boots',
+                    'Slippers & Comfort Wear',
+                    'Occasion / Dress Shoes'
+                ],
+                'promo': {
+                    'title': 'READY. SET. GIFT.',
+                    'subtitle': 'MORE THAN ESSENTIAL',
+                    'description': 'Extra roominess makes the On My Level Carryall the must-have for all your must-haves.',
+                    'button': 'SHOP ACCESORIES'
+                }
+            }
+        },
+        {
+          'name': 'Accessories',
+          'dropdown': {
+                'sections': [
+                    {
+                        'title': 'ACCESSORIES',
+                        'subitems': [
+                            'Handbags', 'Shoulder Bags', 'Tote Bags', 'Crossbody Bags', 'Clutches / Evening Bags', 'Backpacks', 'Wallets & Pouches'
+                        ]
+                    }
+                ],
+                'categories': [
+                    'Bags',
+                    'Jewelry',
+                    'Hair Accessories',
+                    'Belts',
+                    'Scarves & Wraps',
+                    'Hats & Caps',
+                    'Eyewear',
+                    'Watches',
+                    'Gloves',
+                    'Others'
+                ],
+                'subitems_map': {
+                    'Bags': ['Handbags', 'Shoulder Bags', 'Tote Bags', 'Crossbody Bags', 'Clutches / Evening Bags', 'Backpacks', 'Wallets & Pouches'],
+                    'Jewelry': ['Necklaces & Pendants', 'Earrings', 'Bracelets & Bangles', 'Rings', 'Anklets', 'Brooches & Pins'],
+                    'Hair Accessories': ['Hairbands / Headbands', 'Hair Clips & Barrettes', 'Scrunchies', 'Hair Scarves & Wraps', 'Hair Claws'],
+                    'Belts': ['Waist Belts', 'Skinny Belts', 'Wide / Statement Belts', 'Chain Belts'],
+                    'Scarves & Wraps': ['Silk Scarves', 'Shawls', 'Wraps / Stoles', 'Bandanas'],
+                    'Hats & Caps': ['Sun Hats', 'Fedoras', 'Beanies', 'Baseball Caps', 'Berets'],
+                    'Eyewear': ['Sunglasses', 'Eyeglass Frames', 'Reading Glasses'],
+                    'Watches': ['Dress Watches', 'Casual Watches', 'Smartwatches'],
+                    'Gloves': ['Fashion Gloves', 'Winter Gloves', 'Evening Gloves'],
+                    'Others': ['Keychains / Bag Charms', 'Phone Charms / Cases', 'Tights & Socks']
+                },
+                'promo': {
+                    'title': 'READY. SET. GIFT.',
+                    'subtitle': 'MORE THAN ESSENTIAL',
+                    'description': 'Extra roominess makes the On My Level Carryall the must-have for all your must-haves.',
+                    'button': 'SHOP CLOTHES'
+                }
+            }
+        },
+        {'name': "What's New"}
+    ] %}
+
+    <!-- Top Banner -->
+    <div class="top-banner">
+        Get 20% Cash Back <a href="#" onclick="return false;">Click Here</a>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo" onclick="return false;">SHOP.CO</a>
+            
+            <nav class="nav">
+                {% for item in nav_items %}
+                <div class="nav-item">
+                    <a href="#" class="nav-link {% if item.active %}active{% endif %}" onclick="return false;">
+                        {{ item.name }}
+                    </a>
+                    {% if item.dropdown %}
+                    <div class="dropdown">
+                        <div class="dropdown-content">
+                            <div class="dropdown-section">
+                                {% for category in item.dropdown.categories %}
+                                <div class="dropdown-list">
+                                    <li>
+                                        <a href="#" class="category-link" data-category="{{ category|lower|replace(' ', '') }}" data-category-label="{{ category }}" data-nav="{{ item.name|lower }}" onclick="return false;">{{ category }}</a>
+                                    </li>
+                                </div>
+                                {% endfor %}
+                                <div class="shop-all-link">
+                                    <a href="#" onclick="return false;">
+                                        SHOP ALL {{ item.name|upper }}
+                                        <span>→</span>
+                                    </a>
+                                </div>
+                            </div>
+                            {% for section in item.dropdown.sections %}
+                            <div class="dropdown-section">
+                                {% if section.title %}
+                                <div class="dropdown-header" id="category-section-title-{{ item.name|lower }}">
+                                    {{ section.title }}
+                                    <span>→</span>
+                                </div>
+                                {% endif %}
+                                <ul class="dropdown-list" data-section-title="{{ section.title|lower }}-{{ item.name|lower }}">
+                                    {% for subitem in section.subitems %}
+                                    <li><a href="#" onclick="return false;">{{ subitem }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% endfor %}
+                            {% if item.dropdown.promo %}
+                            <div class="dropdown-section">
+                                <div class="promo-section">
+                                    <h3>{{ item.dropdown.promo.title }}</h3>
+                                    <p><strong>{{ item.dropdown.promo.subtitle }}</strong></p>
+                                    <p>{{ item.dropdown.promo.description }}</p>
+                                    <button class="promo-btn">{{ item.dropdown.promo.button }} →</button>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </nav>
+            
+            <div class="header-actions">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search">
+                    <span class="search-icon">🔍</span>
+                </div>
+                
+                <button class="icon-btn cart-btn">
+                    🛒
+                    <span class="cart-count">2</span>
+                </button>
+                
+                <button class="icon-btn">❤️</button>
+                
+                <button class="icon-btn">👤</button>
+            </div>
+        </div>
+        </header>
+    </script>
+    </script>
+    <script>
+    // Dynamic dropdowns for Clothing and Shoes
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Clothing ---
+        var clothingCategorySubitems = {
+            'tops': [
+                'T-Shirts', 'Blouses', 'Button-downs', 'Tank Tops', 'Crop Tops', 'Tube Tops', 'Tunics', 'Wrap Tops', 'Peplum Tops', 'Bodysuits', 'Sweaters', 'Cardigans', 'Sweatshirts  Hoodies'
+            ],
+            'bottoms': [
+                'Jeans', 'Pants & Trousers', 'Leggings & Jeggings', 'Skirts', 'Shorts', 'Culottes & Capris'
+            ],
+            'dresses': [
+                'Casual Dresses', 'Work / Office', 'Shirt Dresses', 'Wrap Dresses', 'Maxi Dresses', 'Midi Dresses', 'Mini Dresses', 'Bodycon', 'A-line', 'Cocktail', 'Evening Gowns', 'Sundresses'
+            ],
+            'outwear': [
+                'Jackets', 'Coats', 'Blazers', 'Vests & Gilets', 'Capes & Ponchos', 'Cardigans'
+            ],
+            'activewear': [
+                'Sports Bras', 'Active Tops', 'Leggings & Yoga Pants', 'Joggers & Track Pants', 'Biker Shorts', 'Hoodies & Sweatshirts', 'Tracksuits & Co-ords'
+            ],
+            'sleepwear': [
+                'Pajama Sets', 'Nightgowns & Chemises', 'Robes & Kimonos', 'Sleep Shirts', 'Lounge Tops', 'Lounge Pants & Shorts', 'Matching Loungewear Sets'
+            ],
+            'undergarments': [
+                'Bras', 'Panties', 'Shapewear', 'Slips & Camisoles', 'Lingerie Sets', 'Hosiery'
+            ],
+            'swimwear': [
+                'Bikinis', 'One-piece Swimsuits', 'Tankinis', 'Monokinis / Cut-out Suits', 'Cover-ups', 'Rash Guards & Swim Tops'
+            ],
+            'occasionwear': [
+                'Formal Wear', 'Party Wear', 'Wedding Wear', 'Festive Wear', 'Cultural / Traditional Wear'
+            ],
+            'traditionalwear': [
+                'Abayas & Kaftans (Middle East)', 'Kimonos & Yukatas (Japan)', 'Cheongsams / Qipaos (China)', 'Kurti / Salwar Kameez (South Asia)', 'Sarees (India)', 'Filipiniana / Baro’t Saya (Philippines)', 'Hanbok (Korea)', 'Dirndl (Central Europe)'
+            ]
+        };
+        var clothingCategoryLabels = {
+            'tops': 'WOMEN TOPS',
+            'bottoms': 'WOMEN BOTTOMS',
+            'dresses': 'WOMEN DRESSES',
+            'outwear': 'WOMEN OUTWEAR',
+            'activewear': 'WOMEN ACTIVEWEAR',
+            'sleepwear': 'WOMEN SLEEPWEAR',
+            'undergarments': 'WOMEN UNDERGARMENTS',
+            'swimwear': 'WOMEN SWIMWEAR',
+            'occasionwear': 'WOMEN OCCASIONWEAR',
+            'traditionalwear': 'WOMEN TRADITIONALWEAR'
+        };
+        var clothingSubitemsList = document.querySelector('ul.dropdown-list[data-section-title="women tops-clothing"]');
+        var clothingSectionTitle = document.getElementById('category-section-title-clothing');
+        var clothingOriginalSectionTitle = clothingSectionTitle ? clothingSectionTitle.innerHTML : '';
+        var clothingOriginalSubitems = clothingSubitemsList ? clothingSubitemsList.innerHTML : '';
+        function showClothingCategorySubitems(category) {
+            if (clothingSubitemsList && clothingCategorySubitems[category]) {
+                clothingSubitemsList.innerHTML = clothingCategorySubitems[category].map(function(item) {
+                    return '<li><a href="#" onclick="return false;">' + item + '</a></li>';
+                }).join('');
+                if (clothingSectionTitle && clothingCategoryLabels[category]) {
+                    clothingSectionTitle.innerHTML = clothingCategoryLabels[category] + '<span>→</span>';
+                }
+            }
+        }
+        function restoreClothingOriginalSubitems() {
+            if (clothingSubitemsList) clothingSubitemsList.innerHTML = clothingOriginalSubitems;
+            if (clothingSectionTitle) clothingSectionTitle.innerHTML = clothingOriginalSectionTitle;
+        }
+        Object.keys(clothingCategorySubitems).forEach(function(cat) {
+            var link = document.querySelector('.category-link[data-category="' + cat + '"][data-nav="clothing"]');
+            if (link) {
+                link.addEventListener('mouseenter', function() { showClothingCategorySubitems(cat); });
+                link.addEventListener('click', function(e) { e.preventDefault(); showClothingCategorySubitems(cat); });
+            }
+        });
+        var clothingDropdownContent = clothingSubitemsList ? clothingSubitemsList.closest('.dropdown-content') : null;
+        // Also show 'tops' subitems when hovering the Clothing nav-link
+        var clothingNavLink = document.querySelector('.nav-link.active[data-nav="clothing"], .nav-link[data-nav="clothing"]');
+        if (clothingNavLink) {
+            clothingNavLink.addEventListener('mouseenter', function() {
+                showClothingCategorySubitems('tops');
+            });
+        }
+        if (clothingDropdownContent) {
+            clothingDropdownContent.addEventListener('mouseleave', function() {
+                restoreClothingOriginalSubitems();
+            });
+            // Show first category's subitems by default on mouseenter
+            clothingDropdownContent.addEventListener('mouseenter', function() {
+                showClothingCategorySubitems('tops');
+            });
+        }
+
+        // --- Shoes ---
+        var shoesCategorySubitems = {
+            'heels': [
+                'Stilettos', 'Pumps', 'Block Heels', 'Wedge Heels', 'Kitten Heels', 'Platform Heels', 'Ankle Strap Heels', 'Mules', 'Peep Toe Heels', 'Slingbacks'
+            ],
+            'flats': [
+                'Ballet Flats', 'Loafers', 'Moccasins', 'Espadrilles', 'Flat Sandals'
+            ],
+            'sandals': [
+                'Strappy Sandals', 'Gladiator Sandals', 'Slide Sandals', 'Slingback Sandals'
+            ],
+            'sneakers': [
+                'Casual Sneakers', 'Fashion / Lifestyle Sneakers', 'Chunky / Platform Sneakers', 'Slip-on Sneakers'
+            ],
+            'boots': [
+                'Ankle Boots', 'Knee-High Boots', 'Over-the-Knee / Thigh-High Boots', 'Chelsea Boots', 'Combat Boots'
+            ],
+            'slippers&comfortwear': [
+                'Indoor Slippers', 'Flip-Flops', 'Slip-on Comfort Sandals'
+            ],
+            'occasion/dressshoes': [
+                'Party Shoes', 'Wedding Shoes', 'Formal Dress Shoes'
+            ]
+        };
+        var shoesCategoryLabels = {
+            'heels': 'HEELS',
+            'flats': 'FLATS',
+            'sandals': 'SANDALS',
+            'sneakers': 'SNEAKERS',
+            'boots': 'BOOTS',
+            'slippers&comfortwear': 'SLIPPERS & COMFORT WEAR',
+            'occasion/dressshoes': 'OCCASION / DRESS SHOES'
+        };
+        var shoesSubitemsList = document.querySelector('ul.dropdown-list[data-section-title="heels-shoes"]');
+        var shoesSectionTitle = document.getElementById('category-section-title-shoes');
+        var shoesOriginalSectionTitle = shoesSectionTitle ? shoesSectionTitle.innerHTML : '';
+        var shoesOriginalSubitems = shoesSubitemsList ? shoesSubitemsList.innerHTML : '';
+        function showShoesCategorySubitems(category) {
+            if (shoesSubitemsList && shoesCategorySubitems[category]) {
+                shoesSubitemsList.innerHTML = shoesCategorySubitems[category].map(function(item) {
+                    return '<li><a href="#" onclick="return false;">' + item + '</a></li>';
+                }).join('');
+                if (shoesSectionTitle && shoesCategoryLabels[category]) {
+                    shoesSectionTitle.innerHTML = shoesCategoryLabels[category] + '<span>→</span>';
+                }
+            }
+        }
+        function restoreShoesOriginalSubitems() {
+            if (shoesSubitemsList) shoesSubitemsList.innerHTML = shoesOriginalSubitems;
+            if (shoesSectionTitle) shoesSectionTitle.innerHTML = shoesOriginalSectionTitle;
+        }
+        Object.keys(shoesCategorySubitems).forEach(function(cat) {
+            var link = document.querySelector('.category-link[data-category="' + cat + '"][data-nav="shoes"]');
+            if (link) {
+                link.addEventListener('mouseenter', function() { showShoesCategorySubitems(cat); });
+                link.addEventListener('click', function(e) { e.preventDefault(); showShoesCategorySubitems(cat); });
+            }
+        });
+        var shoesDropdownContent = shoesSubitemsList ? shoesSubitemsList.closest('.dropdown-content') : null;
+        if (shoesDropdownContent) {
+            shoesDropdownContent.addEventListener('mouseleave', function() {
+                restoreShoesOriginalSubitems();
+            });
+            // Show first category's subitems by default on mouseenter
+            shoesDropdownContent.addEventListener('mouseenter', function() {
+                var firstCat = Object.keys(shoesCategorySubitems)[0];
+                showShoesCategorySubitems(firstCat);
+            });
+        }
+
+        // --- Accessories ---
+        var accessoriesCategorySubitems = {
+            'bags': ['Handbags', 'Shoulder Bags', 'Tote Bags', 'Crossbody Bags', 'Clutches / Evening Bags', 'Backpacks', 'Wallets & Pouches'],
+            'jewelry': ['Necklaces & Pendants', 'Earrings', 'Bracelets & Bangles', 'Rings', 'Anklets', 'Brooches & Pins'],
+            'hairaccessories': ['Hairbands / Headbands', 'Hair Clips & Barrettes', 'Scrunchies', 'Hair Scarves & Wraps', 'Hair Claws'],
+            'belts': ['Waist Belts', 'Skinny Belts', 'Wide / Statement Belts', 'Chain Belts'],
+            'scarves&wraps': ['Silk Scarves', 'Shawls', 'Wraps / Stoles', 'Bandanas'],
+            'hats&caps': ['Sun Hats', 'Fedoras', 'Beanies', 'Baseball Caps', 'Berets'],
+            'eyewear': ['Sunglasses', 'Eyeglass Frames', 'Reading Glasses'],
+            'watches': ['Dress Watches', 'Casual Watches', 'Smartwatches'],
+            'gloves': ['Fashion Gloves', 'Winter Gloves', 'Evening Gloves'],
+            'others': ['Keychains / Bag Charms', 'Phone Charms / Cases', 'Tights & Socks']
+        };
+        var accessoriesCategoryLabels = {
+            'bags': 'BAGS',
+            'jewelry': 'JEWELRY',
+            'hairaccessories': 'HAIR ACCESSORIES',
+            'belts': 'BELTS',
+            'scarves&wraps': 'SCARVES & WRAPS',
+            'hats&caps': 'HATS & CAPS',
+            'eyewear': 'EYEWEAR',
+            'watches': 'WATCHES',
+            'gloves': 'GLOVES',
+            'others': 'OTHERS'
+        };
+        var accessoriesSubitemsList = document.querySelector('ul.dropdown-list[data-section-title="accessories-accessories"]');
+        var accessoriesSectionTitle = document.getElementById('category-section-title-accessories');
+        var accessoriesOriginalSectionTitle = accessoriesSectionTitle ? accessoriesSectionTitle.innerHTML : '';
+        var accessoriesOriginalSubitems = accessoriesSubitemsList ? accessoriesSubitemsList.innerHTML : '';
+        function showAccessoriesCategorySubitems(category) {
+            if (accessoriesSubitemsList && accessoriesCategorySubitems[category]) {
+                accessoriesSubitemsList.innerHTML = accessoriesCategorySubitems[category].map(function(item) {
+                    return '<li><a href="#" onclick="return false;">' + item + '</a></li>';
+                }).join('');
+                if (accessoriesSectionTitle && accessoriesCategoryLabels[category]) {
+                    accessoriesSectionTitle.innerHTML = accessoriesCategoryLabels[category] + '<span>→</span>';
+                }
+            }
+        }
+        function restoreAccessoriesOriginalSubitems() {
+            if (accessoriesSubitemsList) accessoriesSubitemsList.innerHTML = accessoriesOriginalSubitems;
+            if (accessoriesSectionTitle) accessoriesSectionTitle.innerHTML = accessoriesOriginalSectionTitle;
+        }
+        Object.keys(accessoriesCategorySubitems).forEach(function(cat) {
+            var link = document.querySelector('.category-link[data-category="' + cat + '"][data-nav="accessories"]');
+            if (link) {
+                link.addEventListener('mouseenter', function() { showAccessoriesCategorySubitems(cat); });
+                link.addEventListener('click', function(e) { e.preventDefault(); showAccessoriesCategorySubitems(cat); });
+            }
+        });
+        var accessoriesDropdownContent = accessoriesSubitemsList ? accessoriesSubitemsList.closest('.dropdown-content') : null;
+        if (accessoriesDropdownContent) {
+            accessoriesDropdownContent.addEventListener('mouseleave', function() {
+                restoreAccessoriesOriginalSubitems();
+            });
+            // Show first category's subitems by default on mouseenter
+            accessoriesDropdownContent.addEventListener('mouseenter', function() {
+                var firstCat = Object.keys(accessoriesCategorySubitems)[0];
+                showAccessoriesCategorySubitems(firstCat);
+            });
+        }
+    });
+    </script>

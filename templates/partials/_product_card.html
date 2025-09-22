@@ -1,0 +1,10 @@
+
+<div class="product-card">
+    <img src="{{ url_for('static', filename='images/' ~ product.image) }}" alt="{{ product.name }}" class="product-image" style="width:100%;max-width:120px;max-height:120px;aspect-ratio:1/1;object-fit:contain;display:block;margin:0 auto 0.5rem auto;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
+    <div class="product-info">
+        <h2 class="product-title">{{ product.name }}</h2>
+        <p class="product-desc">{{ product.description }}</p>
+        <span class="product-price">${{ '%.2f'|format(product.price) }}</span>
+        <button class="add-to-cart" data-product-id="{{ product.id }}">Add to Cart</button>
+    </div>
+</div>
