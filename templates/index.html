@@ -1,10 +1,26 @@
-{% extends 'base.html' %}
-{% set page_title = 'Home - Womens Apparel' %}
-{% block content %}
-<h1>Featured Products</h1>
-<div class="product-list">
-	{% for product in products %}
-		{% include 'partials/_product_card.html' %}
-	{% endfor %}
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title or 'Womens Apparel' }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    {% include 'partials/_header.html' %}
+    <div class="container">
+        <aside>
+            {% include 'partials/_sidebar.html' %}
+        </aside>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    {% include 'partials/_footer.html' %}
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/header.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

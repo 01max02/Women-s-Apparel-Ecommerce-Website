@@ -1,0 +1,213 @@
+
+
+{% extends "base.html" %}
+{% block title %}Add Product{% endblock %}
+{% block content %}
+<div class="add-product-container">
+    <h1>Add New Product</h1>
+    <form id="addProductForm" method="POST" enctype="multipart/form-data" action="{{ url_for('add_product') }}">
+        <div class="form-group">
+            <label for="product_name">Product Name:</label>
+            <input type="text" id="product_name" name="product_name" required>
+        </div>
+        <div class="form-group">
+            <label for="product_image">Product Image:</label>
+            <input type="file" id="product_image" name="product_image" accept="image/*">
+            <small>Or provide image URL:</small>
+            <input type="url" id="image_url" name="image_url" placeholder="https://example.com/image.jpg">
+        </div>
+        <div class="form-group">
+            <label for="colors">Available Colors:</label>
+            <div class="color-input-container">
+                <input type="text" id="color_input" placeholder="Enter color name">
+                <button type="button" id="add_color_btn">Add Color</button>
+            </div>
+            <div id="selected_colors" class="selected-colors"></div>
+            <input type="hidden" id="colors_hidden" name="colors">
+        </div>
+        <div class="form-group">
+            <label for="price">Price ($):</label>
+            <input type="number" id="price" name="price" step="0.01" min="0" required>
+        </div>
+        <button type="submit" class="submit-btn">Add Product</button>
+    </form>
+    {% if new_product %}
+    {% set product = new_product %}
+    <div class="preview-section">
+        <h2>Product Preview:</h2>
+        <div class="product-preview">
+            {% include 'partials/_product_card.html' %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+<style>
+.add-product-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.add-product-container h1 {
+    color: #333;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="url"],
+.form-group input[type="number"],
+.form-group input[type="file"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.color-input-container {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.color-input-container input {
+    flex: 1;
+}
+
+#add_color_btn {
+    padding: 0.75rem 1rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#add_color_btn:hover {
+    background: #0056b3;
+}
+
+.selected-colors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.color-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.color-tag .remove-color {
+    cursor: pointer;
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover {
+    background: #218838;
+}
+
+.preview-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #eee;
+}
+
+.product-preview {
+    display: flex;
+    justify-content: center;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const colorInput = document.getElementById('color_input');
+    const addColorBtn = document.getElementById('add_color_btn');
+    const selectedColorsDiv = document.getElementById('selected_colors');
+    const colorsHidden = document.getElementById('colors_hidden');
+    
+    let selectedColors = [];
+    
+    function updateColorsDisplay() {
+        selectedColorsDiv.innerHTML = '';
+        selectedColors.forEach((color, index) => {
+            const colorTag = document.createElement('div');
+            colorTag.className = 'color-tag';
+            colorTag.innerHTML = `
+                <span class="color-dot" style="background-color: ${color.toLowerCase()}; width: 16px; height: 16px; border-radius: 50%; display: inline-block;"></span>
+                <span>${color}</span>
+                <span class="remove-color" data-index="${index}">×</span>
+            `;
+            selectedColorsDiv.appendChild(colorTag);
+        });
+        colorsHidden.value = JSON.stringify(selectedColors);
+    }
+    
+    addColorBtn.addEventListener('click', function() {
+        const color = colorInput.value.trim();
+        if (color && !selectedColors.includes(color)) {
+            selectedColors.push(color);
+            updateColorsDisplay();
+            colorInput.value = '';
+        }
+    });
+    
+    colorInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            addColorBtn.click();
+        }
+    });
+    
+    selectedColorsDiv.addEventListener('click', function(e) {
+        if (e.target.classList.contains('remove-color')) {
+            const index = parseInt(e.target.dataset.index);
+            selectedColors.splice(index, 1);
+            updateColorsDisplay();
+        }
+    });
+});
+</script>
+
