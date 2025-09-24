@@ -1,0 +1,348 @@
+{# Jinja2 block for category carousel, and style for partial #}
+{% block category_carousel %}
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+
+        .carousel-container {
+            width: 100vw;
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+            transform: none;
+            padding: 0;
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+            gap: 20px;
+        }
+
+        .card {
+            /* Reduced card size from 420x558 to 320x420 */
+            min-width: 320px;
+            height: 420px;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .card-title {
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .nav-button:hover {
+            background: #f8f8f8;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-button:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .nav-button.prev {
+            /* Moved arrow buttons inside container to prevent cropping */
+            left: 10px;
+        }
+
+        .nav-button.next {
+            /* Push the next button further inside for better visibility */
+            right: 70px;
+        }
+
+        .nav-button svg {
+            width: 20px;
+            height: 20px;
+            fill: #333;
+        }
+
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-button:disabled:hover {
+            transform: translateY(-50%) scale(1);
+            background: white;
+        }
+
+        /* Updated responsive breakpoints for smaller cards */
+        @media (max-width: 1400px) {
+            .carousel-container {
+                width: 100vw;
+            }
+        }
+
+        @media (max-width: 1080px) {
+            .carousel-container {
+                width: 100vw;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .carousel-container {
+                width: 100vw;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .card {
+                /* Further reduced card size for mobile */
+                min-width: 280px;
+                height: 360px;
+            }
+            .carousel-container {
+                width: 100vw;
+                padding: 0 10px;
+            }
+        }
+    </style>
+    <div class="carousel-container">
+        <button class="nav-button prev" id="prevBtn">
+            <svg viewBox="0 0 24 24">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+            </svg>
+        </button>
+        
+        <div class="carousel-wrapper" id="carouselWrapper">
+            <div class="card" data-category="t-shirts">
+                <img src="{{ url_for('static', filename='images/T-Shirts.png') }}" alt="T-Shirts">
+                <div class="card-overlay">
+                    <div class="card-title">T-Shirts</div>
+                </div>
+            </div>
+            <div class="card" data-category="blouses">
+                <img src="{{ url_for('static', filename='images/Blouses.png') }}" alt="Blouses">
+                <div class="card-overlay">
+                    <div class="card-title">Blouses</div>
+                </div>
+            </div>
+            <div class="card" data-category="button-downs">
+                <img src="{{ url_for('static', filename='images/Button-Downs.png') }}" alt="Button-Downs">
+                <div class="card-overlay">
+                    <div class="card-title">Button-downs</div>
+                </div>
+            </div>
+            <div class="card" data-category="tank-tops">
+                <img src="{{ url_for('static', filename='images/Tank Tops.png') }}" alt="Tank Tops">
+                <div class="card-overlay">
+                    <div class="card-title">Tank Tops</div>
+                </div>
+            </div>
+            <div class="card" data-category="crop-tops">
+                <img src="{{ url_for('static', filename='images/Crop Top.png') }}" alt="Crop Tops">
+                <div class="card-overlay">
+                    <div class="card-title">Crop Tops</div>
+                </div>
+            </div>
+            <div class="card" data-category="tube-tops">
+                <img src="{{ url_for('static', filename='images/Tube Tops.png') }}" alt="Tube Tops">
+                <div class="card-overlay">
+                    <div class="card-title">Tube Tops</div>
+                </div>
+            </div>
+            <div class="card" data-category="tunics">
+                <img src="{{ url_for('static', filename='images/Tunics.png') }}" alt="Tunics">
+                <div class="card-overlay">
+                    <div class="card-title">Tunics</div>
+                </div>
+            </div>
+            <div class="card" data-category="wrap-tops">
+                <img src="{{ url_for('static', filename='images/Wrap Tops.png') }}" alt="Wrap Tops">
+                <div class="card-overlay">
+                    <div class="card-title">Wrap Tops</div>
+                </div>
+            </div>
+            <div class="card" data-category="peplum-tops">
+                <img class="card-image" src="static/images/Peplum-Tops.jpg" alt="Peplum Tops">
+                <div class="card-overlay">
+                    <div class="card-title">Peplum Tops</div>
+                </div>
+            </div>
+            <div class="card" data-category="bodysuits">
+                <img class="card-image" src="static/images/Bodysuits.jpg" alt="Bodysuits">
+                <div class="card-overlay">
+                    <div class="card-title">Bodysuits</div>
+                </div>
+            </div>
+            <div class="card" data-category="sweaters">
+                <img class="card-image" src="static/images/Sweaters.jpg" alt="Sweaters">
+                <div class="card-overlay">
+                    <div class="card-title">Sweaters</div>
+                </div>
+            </div>
+            <div class="card" data-category="cardigans">
+                <img class="card-image" src="static/images/Cardigans.jpg" alt="Cardigans">
+                <div class="card-overlay">
+                    <div class="card-title">Cardigans</div>
+                </div>
+            </div>
+            <div class="card" data-category="sweatshirts">
+                <img class="card-image" src="static/images/Sweatshirts.jpg" alt="Sweatshirts">
+                <div class="card-overlay">
+                    <div class="card-title">Sweatshirts</div>
+                </div>
+            </div>
+            <div class="card" data-category="hoodies">
+                <img class="card-image" src="static/images/Hoodies.jpg" alt="Hoodies">
+                <div class="card-overlay">
+                    <div class="card-title">Hoodies</div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="nav-button next" id="nextBtn">
+            <svg viewBox="0 0 24 24">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        class ClothingCarousel {
+            constructor() {
+                this.wrapper = document.getElementById('carouselWrapper');
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
+                this.cards = document.querySelectorAll('.card');
+                this.currentIndex = 0;
+                this.cardsToShow = 5;
+                this.cardWidth = 320;
+                this.cardGap = 20;
+                this.maxIndex = Math.max(0, this.cards.length - this.cardsToShow);
+
+                this.init();
+                this.updateResponsiveSettings();
+                window.addEventListener('resize', () => this.updateResponsiveSettings());
+            }
+
+            init() {
+                this.prevBtn.addEventListener('click', () => this.prev());
+                this.nextBtn.addEventListener('click', () => this.next());
+                this.updateButtons();
+
+                this.cards.forEach(card => {
+                    card.addEventListener('click', () => {
+                        const category = card.dataset.category;
+                        console.log(`Clicked on ${category}`);
+                        // You can add navigation logic here
+                    });
+                });
+            }
+
+            updateResponsiveSettings() {
+                const containerWidth = this.wrapper.parentElement.offsetWidth;
+
+                if (containerWidth <= 400) {
+                    this.cardsToShow = 1;
+                    this.cardWidth = 280;
+                } else if (containerWidth <= 720) {
+                    this.cardsToShow = 2;
+                    this.cardWidth = 320;
+                } else if (containerWidth <= 1080) {
+                    this.cardsToShow = 3;
+                    this.cardWidth = 320;
+                } else if (containerWidth <= 1400) {
+                    this.cardsToShow = 4;
+                    this.cardWidth = 320;
+                } else {
+                    this.cardsToShow = 5;
+                    this.cardWidth = 320;
+                }
+
+                this.maxIndex = Math.max(0, this.cards.length - this.cardsToShow);
+                this.currentIndex = Math.min(this.currentIndex, this.maxIndex);
+                this.updateCarousel();
+            }
+
+            prev() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex--;
+                    this.updateCarousel();
+                }
+            }
+
+            next() {
+                if (this.currentIndex < this.maxIndex) {
+                    this.currentIndex++;
+                    this.updateCarousel();
+                }
+            }
+
+            updateCarousel() {
+                const translateX = -(this.currentIndex * (this.cardWidth + this.cardGap));
+                this.wrapper.style.transform = `translateX(${translateX}px)`;
+                this.updateButtons();
+            }
+
+            updateButtons() {
+                this.prevBtn.disabled = this.currentIndex === 0;
+                this.nextBtn.disabled = this.currentIndex >= this.maxIndex;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new ClothingCarousel();
+        });
+    </script>
+{% endblock %}
