@@ -10,12 +10,12 @@
 </head>
 <body>
     {% include 'partials/_header.html' %}
+    {% include 'partials/_filters_clothing.html' %}
     <div class="container">
-        <aside>
-            {% include 'partials/_sidebar.html' %}
-        </aside>
         <main>
-            {% block content %}{% endblock %}
+            {% block content %}
+                {% include 'partials/_category_carousel.html' %}
+            {% endblock %}
         </main>
     </div>
     {% include 'partials/_footer.html' %}
