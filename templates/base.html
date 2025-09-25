@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page_title or 'Womens Apparel' }}</title>
+    <title>{% block title %}{{ page_title or 'Womens Apparel' }}{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/_header.css') }}">
     {% block extra_css %}{% endblock %}
 </head>
 <body>
     {% include 'partials/_header.html' %}
+    {% if category == 'clothing' %}
+        {% include 'partials/_clothing_carousel.html' %}
+        {% include 'partials/_filters_clothing.html' %}
+    {% elif category == 'shoes' %}
+        {% include 'partials/_filters_shoes.html' %}
+    {% elif category == 'accessories' %}
+        {% include 'partials/_filters_accessories.html' %}
+    {% endif %}
     <div class="container">
         <aside>
             {% include 'partials/_sidebar.html' %}
@@ -18,9 +26,8 @@
             {% block content %}{% endblock %}
         </main>
     </div>
-    {% include 'partials/_footer.html' %}
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/header.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/_header.js') }}"></script>
     {% block extra_js %}{% endblock %}
-</body>
+
 </html>
