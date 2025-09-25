@@ -1,6 +1,6 @@
-// JS for _clothing_carousel.html
+// JS for _accessories_carousel.html
 
-        class ClothingCarousel {
+        class AccessoriesCarousel {
             constructor() {
                 this.wrapper = document.getElementById('carouselWrapper');
                 this.prevBtn = document.getElementById('prevBtn');
@@ -32,25 +32,27 @@
                     card.addEventListener('click', () => {
                         const category = card.dataset.category;
                         console.log(`Clicked on ${category}`);
-                        // Navigate to specific category pages
-                        if (category === 'tops') {
-                            window.location.href = '/shop/clothing/tops';
-                        } else if (category === 'bottoms') {
-                            window.location.href = '/shop/clothing/bottoms';
-                        } else if (category === 'dresses') {
-                            window.location.href = '/shop/clothing/dresses';
-                        } else if (category === 'outerwear') {
-                            window.location.href = '/shop/clothing/outwear';
-                        } else if (category === 'activewear') {
-                            window.location.href = '/shop/clothing/activewear';
-                        } else if (category === 'sleepwear') {
-                            window.location.href = '/shop/clothing/sleepwear';
-                        } else if (category === 'undergarments') {
-                            window.location.href = '/shop/clothing/undergarments';
-                        } else if (category === 'swimwear') {
-                            window.location.href = '/shop/clothing/swimwear';
-                        } else if (category === 'occasionwear') {
-                            window.location.href = '/shop/clothing/occasionwear';
+                        // Navigate to specific accessory category pages
+                        if (category === 'bags') {
+                            window.location.href = '/shop/accessories/bags';
+                        } else if (category === 'jewelry') {
+                            window.location.href = '/shop/accessories/jewelry';
+                        } else if (category === 'hair-accessories') {
+                            window.location.href = '/shop/accessories/hair-accessories';
+                        } else if (category === 'belts') {
+                            window.location.href = '/shop/accessories/belts';
+                        } else if (category === 'scarves-wraps') {
+                            window.location.href = '/shop/accessories/scarves-&-wraps';
+                        } else if (category === 'hats-caps') {
+                            window.location.href = '/shop/accessories/hats-&-caps';
+                        } else if (category === 'eyewear') {
+                            window.location.href = '/shop/accessories/eyewear';
+                        } else if (category === 'watches') {
+                            window.location.href = '/shop/accessories/watches';
+                        } else if (category === 'gloves') {
+                            window.location.href = '/shop/accessories/gloves';
+                        } else if (category === 'others') {
+                            window.location.href = '/shop/accessories/others';
                         } else {
                             console.log(`Navigation for ${category} not implemented yet`);
                         }
@@ -110,6 +112,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            new ClothingCarousel();
+            new AccessoriesCarousel();
         });
 

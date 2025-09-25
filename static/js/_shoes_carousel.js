@@ -1,6 +1,6 @@
-// JS for _clothing_carousel.html
+// JS for _shoes_carousel.html
 
-        class ClothingCarousel {
+        class ShoesCarousel {
             constructor() {
                 this.wrapper = document.getElementById('carouselWrapper');
                 this.prevBtn = document.getElementById('prevBtn');
@@ -32,25 +32,21 @@
                     card.addEventListener('click', () => {
                         const category = card.dataset.category;
                         console.log(`Clicked on ${category}`);
-                        // Navigate to specific category pages
-                        if (category === 'tops') {
-                            window.location.href = '/shop/clothing/tops';
-                        } else if (category === 'bottoms') {
-                            window.location.href = '/shop/clothing/bottoms';
-                        } else if (category === 'dresses') {
-                            window.location.href = '/shop/clothing/dresses';
-                        } else if (category === 'outerwear') {
-                            window.location.href = '/shop/clothing/outwear';
-                        } else if (category === 'activewear') {
-                            window.location.href = '/shop/clothing/activewear';
-                        } else if (category === 'sleepwear') {
-                            window.location.href = '/shop/clothing/sleepwear';
-                        } else if (category === 'undergarments') {
-                            window.location.href = '/shop/clothing/undergarments';
-                        } else if (category === 'swimwear') {
-                            window.location.href = '/shop/clothing/swimwear';
-                        } else if (category === 'occasionwear') {
-                            window.location.href = '/shop/clothing/occasionwear';
+                        // Navigate to specific shoe category pages
+                        if (category === 'heels') {
+                            window.location.href = '/shop/shoes/heels';
+                        } else if (category === 'flats') {
+                            window.location.href = '/shop/shoes/flats';
+                        } else if (category === 'sandals') {
+                            window.location.href = '/shop/shoes/sandals';
+                        } else if (category === 'sneakers') {
+                            window.location.href = '/shop/shoes/sneakers';
+                        } else if (category === 'boots') {
+                            window.location.href = '/shop/shoes/boots';
+                        } else if (category === 'slippers') {
+                            window.location.href = '/shop/shoes/slippers';
+                        } else if (category === 'occasion-shoes') {
+                            window.location.href = '/shop/shoes/occasion-shoes';
                         } else {
                             console.log(`Navigation for ${category} not implemented yet`);
                         }
@@ -110,6 +106,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            new ClothingCarousel();
+            new ShoesCarousel();
         });
 

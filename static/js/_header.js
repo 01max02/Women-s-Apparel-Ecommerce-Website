@@ -70,9 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
         ],
         'occasionwear': [
             'Formal Wear', 'Party Wear', 'Wedding Wear', 'Festive Wear', 'Cultural / Traditional Wear'
-        ],
-        'traditionalwear': [
-            'Abayas & Kaftans (Middle East)', 'Kimonos & Yukatas (Japan)', 'Cheongsams / Qipaos (China)', 'Kurti / Salwar Kameez (South Asia)', 'Sarees (India)', 'Filipiniana / Baro\'t Saya (Philippines)', 'Hanbok (Korea)', 'Dirndl (Central Europe)'
         ]
     };
 
@@ -85,8 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'sleepwear': 'WOMEN SLEEPWEAR',
         'undergarments': 'WOMEN UNDERGARMENTS',
         'swimwear': 'WOMEN SWIMWEAR',
-        'occasionwear': 'WOMEN OCCASIONWEAR',
-        'traditionalwear': 'WOMEN TRADITIONALWEAR'
+        'occasionwear': 'WOMEN OCCASIONWEAR'
     };
 
     var clothingSubitemsList = document.querySelector('ul.dropdown-list[data-section-title="women tops-clothing"]');
@@ -138,7 +134,28 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             link.addEventListener('click', function(e) { 
                 e.preventDefault(); 
-                showClothingCategorySubitems(cat); 
+                // Navigate to the specific category page
+                if (cat === 'tops') {
+                    window.location.href = '/shop/clothing/tops';
+                } else if (cat === 'bottoms') {
+                    window.location.href = '/shop/clothing/bottoms';
+                } else if (cat === 'dresses') {
+                    window.location.href = '/shop/clothing/dresses';
+                } else if (cat === 'outwear') {
+                    window.location.href = '/shop/clothing/outwear';
+                } else if (cat === 'activewear') {
+                    window.location.href = '/shop/clothing/activewear';
+                } else if (cat === 'sleepwear') {
+                    window.location.href = '/shop/clothing/sleepwear';
+                } else if (cat === 'undergarments') {
+                    window.location.href = '/shop/clothing/undergarments';
+                } else if (cat === 'swimwear') {
+                    window.location.href = '/shop/clothing/swimwear';
+                } else if (cat === 'occasionwear') {
+                    window.location.href = '/shop/clothing/occasionwear';
+                } else {
+                    showClothingCategorySubitems(cat); 
+                }
             });
         }
     });
@@ -231,7 +248,27 @@ document.addEventListener('DOMContentLoaded', function() {
         var link = document.querySelector('.category-link[data-category="' + cat + '"][data-nav="shoes"]');
         if (link) {
             link.addEventListener('mouseenter', function() { showShoesCategorySubitems(cat); });
-            link.addEventListener('click', function(e) { e.preventDefault(); showShoesCategorySubitems(cat); });
+            link.addEventListener('click', function(e) { 
+                e.preventDefault(); 
+                // Navigate to specific shoe category page
+                if (cat === 'heels') {
+                    window.location.href = '/shop/shoes/heels';
+                } else if (cat === 'flats') {
+                    window.location.href = '/shop/shoes/flats';
+                } else if (cat === 'sandals') {
+                    window.location.href = '/shop/shoes/sandals';
+                } else if (cat === 'sneakers') {
+                    window.location.href = '/shop/shoes/sneakers';
+                } else if (cat === 'boots') {
+                    window.location.href = '/shop/shoes/boots';
+                } else if (cat === 'slippers&comfortwear') {
+                    window.location.href = '/shop/shoes/slippers';
+                } else if (cat === 'occasion/dressshoes') {
+                    window.location.href = '/shop/shoes/occasion-shoes';
+                } else {
+                    showShoesCategorySubitems(cat);
+                }
+            });
         }
     });
 
@@ -250,10 +287,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var accessoriesCategorySubitems = {
         'bags': ['Handbags', 'Shoulder Bags', 'Tote Bags', 'Crossbody Bags', 'Clutches / Evening Bags', 'Backpacks', 'Wallets & Pouches'],
         'jewelry': ['Necklaces & Pendants', 'Earrings', 'Bracelets & Bangles', 'Rings', 'Anklets', 'Brooches & Pins'],
-        'hairaccessories': ['Hairbands / Headbands', 'Hair Clips & Barrettes', 'Scrunchies', 'Hair Scarves & Wraps', 'Hair Claws'],
+        'hair-accessories': ['Hairbands / Headbands', 'Hair Clips & Barrettes', 'Scrunchies', 'Hair Scarves & Wraps', 'Hair Claws'],
         'belts': ['Waist Belts', 'Skinny Belts', 'Wide / Statement Belts', 'Chain Belts'],
-        'scarves&wraps': ['Silk Scarves', 'Shawls', 'Wraps / Stoles', 'Bandanas'],
-        'hats&caps': ['Sun Hats', 'Fedoras', 'Beanies', 'Baseball Caps', 'Berets'],
+        'scarves-&-wraps': ['Silk Scarves', 'Shawls', 'Wraps / Stoles', 'Bandanas'],
+        'hats-&-caps': ['Sun Hats', 'Fedoras', 'Beanies', 'Baseball Caps', 'Berets'],
         'eyewear': ['Sunglasses', 'Eyeglass Frames', 'Reading Glasses'],
         'watches': ['Dress Watches', 'Casual Watches', 'Smartwatches'],
         'gloves': ['Fashion Gloves', 'Winter Gloves', 'Evening Gloves'],
@@ -263,10 +300,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var accessoriesCategoryLabels = {
         'bags': 'BAGS',
         'jewelry': 'JEWELRY',
-        'hairaccessories': 'HAIR ACCESSORIES',
+        'hair-accessories': 'HAIR ACCESSORIES',
         'belts': 'BELTS',
-        'scarves&wraps': 'SCARVES & WRAPS',
-        'hats&caps': 'HATS & CAPS',
+        'scarves-&-wraps': 'SCARVES & WRAPS',
+        'hats-&-caps': 'HATS & CAPS',
         'eyewear': 'EYEWEAR',
         'watches': 'WATCHES',
         'gloves': 'GLOVES',
@@ -315,7 +352,33 @@ document.addEventListener('DOMContentLoaded', function() {
         var link = document.querySelector('.category-link[data-category="' + cat + '"][data-nav="accessories"]');
         if (link) {
             link.addEventListener('mouseenter', function() { showAccessoriesCategorySubitems(cat); });
-            link.addEventListener('click', function(e) { e.preventDefault(); showAccessoriesCategorySubitems(cat); });
+            link.addEventListener('click', function(e) { 
+                e.preventDefault(); 
+                // Navigate to specific accessory category page
+                if (cat === 'bags') {
+                    window.location.href = '/shop/accessories/bags';
+                } else if (cat === 'jewelry') {
+                    window.location.href = '/shop/accessories/jewelry';
+                } else if (cat === 'hair-accessories') {
+                    window.location.href = '/shop/accessories/hair-accessories';
+                } else if (cat === 'belts') {
+                    window.location.href = '/shop/accessories/belts';
+                } else if (cat === 'scarves-&-wraps') {
+                    window.location.href = '/shop/accessories/scarves-&-wraps';
+                } else if (cat === 'hats-&-caps') {
+                    window.location.href = '/shop/accessories/hats-&-caps';
+                } else if (cat === 'eyewear') {
+                    window.location.href = '/shop/accessories/eyewear';
+                } else if (cat === 'watches') {
+                    window.location.href = '/shop/accessories/watches';
+                } else if (cat === 'gloves') {
+                    window.location.href = '/shop/accessories/gloves';
+                } else if (cat === 'others') {
+                    window.location.href = '/shop/accessories/others';
+                } else {
+                    showAccessoriesCategorySubitems(cat);
+                }
+            });
         }
     });
 

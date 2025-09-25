@@ -1,6 +1,6 @@
-// JS for _clothing_carousel.html
+// JS for _hats_carousel.html
 
-        class ClothingCarousel {
+        class HatsCarousel {
             constructor() {
                 this.wrapper = document.getElementById('carouselWrapper');
                 this.prevBtn = document.getElementById('prevBtn');
@@ -32,28 +32,9 @@
                     card.addEventListener('click', () => {
                         const category = card.dataset.category;
                         console.log(`Clicked on ${category}`);
-                        // Navigate to specific category pages
-                        if (category === 'tops') {
-                            window.location.href = '/shop/clothing/tops';
-                        } else if (category === 'bottoms') {
-                            window.location.href = '/shop/clothing/bottoms';
-                        } else if (category === 'dresses') {
-                            window.location.href = '/shop/clothing/dresses';
-                        } else if (category === 'outerwear') {
-                            window.location.href = '/shop/clothing/outwear';
-                        } else if (category === 'activewear') {
-                            window.location.href = '/shop/clothing/activewear';
-                        } else if (category === 'sleepwear') {
-                            window.location.href = '/shop/clothing/sleepwear';
-                        } else if (category === 'undergarments') {
-                            window.location.href = '/shop/clothing/undergarments';
-                        } else if (category === 'swimwear') {
-                            window.location.href = '/shop/clothing/swimwear';
-                        } else if (category === 'occasionwear') {
-                            window.location.href = '/shop/clothing/occasionwear';
-                        } else {
-                            console.log(`Navigation for ${category} not implemented yet`);
-                        }
+                        // For now, show alert - you can replace with actual navigation
+                        alert(`You clicked on ${category}. Navigation to specific ${category} page will be implemented.`);
+                        // Future implementation: window.location.href = `/shop/accessories/hats-caps/${category}`;
                     });
                 });
             }
@@ -110,6 +91,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            new ClothingCarousel();
+            new HatsCarousel();
         });
 

@@ -1,13 +1,13 @@
-// JS for _clothing_carousel.html
+// JS for _bottoms_carousel.html
 
-        class ClothingCarousel {
+        class BottomsCarousel {
             constructor() {
                 this.wrapper = document.getElementById('carouselWrapper');
                 this.prevBtn = document.getElementById('prevBtn');
                 this.nextBtn = document.getElementById('nextBtn');
                 this.cards = document.querySelectorAll('.card');
                 this.currentIndex = 0;
-                this.cardsToShow = 5;
+                this.cardsToShow = Math.min(6, this.cards.length); // Show all cards if 6 or fewer
                 this.cardWidth = 320;
                 this.cardGap = 20;
                 this.maxIndex = Math.max(0, this.cards.length - this.cardsToShow);
@@ -18,6 +18,10 @@
             }
 
             init() {
+                // Ensure buttons are visible initially
+                this.prevBtn.style.display = 'flex';
+                this.nextBtn.style.display = 'flex';
+                
                 this.prevBtn.addEventListener('click', (e) => {
                     e.preventDefault();
                     this.prev();
@@ -32,28 +36,9 @@
                     card.addEventListener('click', () => {
                         const category = card.dataset.category;
                         console.log(`Clicked on ${category}`);
-                        // Navigate to specific category pages
-                        if (category === 'tops') {
-                            window.location.href = '/shop/clothing/tops';
-                        } else if (category === 'bottoms') {
-                            window.location.href = '/shop/clothing/bottoms';
-                        } else if (category === 'dresses') {
-                            window.location.href = '/shop/clothing/dresses';
-                        } else if (category === 'outerwear') {
-                            window.location.href = '/shop/clothing/outwear';
-                        } else if (category === 'activewear') {
-                            window.location.href = '/shop/clothing/activewear';
-                        } else if (category === 'sleepwear') {
-                            window.location.href = '/shop/clothing/sleepwear';
-                        } else if (category === 'undergarments') {
-                            window.location.href = '/shop/clothing/undergarments';
-                        } else if (category === 'swimwear') {
-                            window.location.href = '/shop/clothing/swimwear';
-                        } else if (category === 'occasionwear') {
-                            window.location.href = '/shop/clothing/occasionwear';
-                        } else {
-                            console.log(`Navigation for ${category} not implemented yet`);
-                        }
+                        // For now, show alert - you can replace with actual navigation
+                        alert(`You clicked on ${category}. Navigation to specific ${category} page will be implemented.`);
+                        // Future implementation: window.location.href = `/shop/clothing/bottoms/${category}`;
                     });
                 });
             }
@@ -74,7 +59,8 @@
                     this.cardsToShow = 4;
                     this.cardWidth = 320;
                 } else {
-                    this.cardsToShow = 5;
+                    // For bottoms carousel with 6 cards, show max 5 to ensure navigation is needed
+                    this.cardsToShow = Math.min(5, this.cards.length);
                     this.cardWidth = 320;
                 }
 
@@ -105,11 +91,21 @@
 
             updateButtons() {
                 this.prevBtn.disabled = this.currentIndex === 0;
-                this.nextBtn.disabled = this.currentIndex >= this.maxIndex;
+                this.nextBtn.disabled = this.currentIndex >= this.maxIndex || this.maxIndex === 0;
+                
+                // Always show navigation buttons for bottoms carousel (6 cards)
+                // Only hide if there are very few cards (3 or less)
+                if (this.cards.length <= 3) {
+                    this.prevBtn.style.display = 'none';
+                    this.nextBtn.style.display = 'none';
+                } else {
+                    this.prevBtn.style.display = 'flex';
+                    this.nextBtn.style.display = 'flex';
+                }
             }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            new ClothingCarousel();
+            new BottomsCarousel();
         });
 
