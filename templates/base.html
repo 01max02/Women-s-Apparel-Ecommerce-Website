@@ -11,11 +11,71 @@
 <body>
     {% include 'partials/_header.html' %}
     {% if category == 'clothing' %}
-        {% include 'partials/_clothing_carousel.html' %}
+        {% if subcategory == 'tops' %}
+            {% include 'partials/_tops_carousel.html' %}
+        {% elif subcategory == 'bottoms' %}
+            {% include 'partials/_bottoms_carousel.html' %}
+        {% elif subcategory == 'dresses' %}
+            {% include 'partials/_dress_carousel.html' %}
+        {% elif subcategory == 'outwear' %}
+            {% include 'partials/_outwear_carousel.html' %}
+        {% elif subcategory == 'activewear' %}
+            {% include 'partials/_activewear_carousel.html' %}
+        {% elif subcategory == 'sleepwear' %}
+            {% include 'partials/_sleepwear_carousel.html' %}
+        {% elif subcategory == 'undergarments' %}
+            {% include 'partials/_undergarments_carousel.html' %}
+        {% elif subcategory == 'swimwear' %}
+            {% include 'partials/_swimwear_carousel.html' %}
+        {% elif subcategory == 'occasionwear' %}
+            {% include 'partials/_occasionwear_carousel.html' %}
+        {% else %}
+            {% include 'partials/_clothing_carousel.html' %}
+        {% endif %}
         {% include 'partials/_filters_clothing.html' %}
     {% elif category == 'shoes' %}
+        {% if subcategory == 'heels' %}
+            {% include 'partials/_heels_carousel.html' %}
+        {% elif subcategory == 'flats' %}
+            {% include 'partials/_flats_carousel.html' %}
+        {% elif subcategory == 'sandals' %}
+            {% include 'partials/_sandals_carousel.html' %}
+        {% elif subcategory == 'sneakers' %}
+            {% include 'partials/_sneakers_carousel.html' %}
+        {% elif subcategory == 'boots' %}
+            {% include 'partials/_boots_carousel.html' %}
+        {% elif subcategory == 'slippers' %}
+            {% include 'partials/_slippers_carousel.html' %}
+        {% elif subcategory == 'occasion-shoes' %}
+            {% include 'partials/_dress_shoes_carousel.html' %}
+        {% else %}
+            {% include 'partials/_shoes_carousel.html' %}
+        {% endif %}
         {% include 'partials/_filters_shoes.html' %}
     {% elif category == 'accessories' %}
+        {% if subcategory == 'bags' %}
+            {% include 'partials/_bags_carousel.html' %}
+        {% elif subcategory == 'jewelry' %}
+            {% include 'partials/_jewelry_carousel.html' %}
+        {% elif subcategory == 'hair-accessories' %}
+            {% include 'partials/_hair_carousel.html' %}
+        {% elif subcategory == 'belts' %}
+            {% include 'partials/_belts_carousel.html' %}
+        {% elif subcategory == 'scarves-&-wraps' %}
+            {% include 'partials/_scarves_carousel.html' %}
+        {% elif subcategory == 'hats-&-caps' %}
+            {% include 'partials/_hats_carousel.html' %}
+        {% elif subcategory == 'eyewear' %}
+            {% include 'partials/_eyeglasses_carousel.html' %}
+        {% elif subcategory == 'watches' %}
+            {% include 'partials/_watches_carousel.html' %}
+        {% elif subcategory == 'gloves' %}
+            {% include 'partials/_gloves_carousel.html' %}
+        {% elif subcategory == 'others' %}
+            {% include 'partials/_others_carousel.html' %}
+        {% else %}
+            {% include 'partials/_accessories_carousel.html' %}
+        {% endif %}
         {% include 'partials/_filters_accessories.html' %}
     {% endif %}
     <div class="container">
@@ -26,6 +86,10 @@
             {% block content %}{% endblock %}
         </main>
     </div>
+    
+    <!-- Include Footer -->
+    {% include 'partials/_footer.html' %}
+    
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <script src="{{ url_for('static', filename='js/_header.js') }}"></script>
     {% block extra_js %}{% endblock %}
