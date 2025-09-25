@@ -9,21 +9,22 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background-color: #f5f5f5;
-            padding: 20px;
+            padding: 0;
         }
 
         .container {
-            width: 1728px;
-            margin: 0 auto;
+            width: calc(100% - 48px);
+            max-width: 1600px;
+            margin: 24px auto 0;
             display: flex;
-            gap: 40px;
+            gap: 32px;
         }
 
         .sidebar-filter {
-            width: 300px;
+            width: 280px;
             background: white;
             padding: 0;
-            margin-left: 111px;
+            margin-left: 0;
             height: fit-content;
             position: sticky;
             top: 20px;
@@ -249,8 +250,8 @@
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
         }
 
         .product-card {
@@ -285,16 +286,30 @@
             color: #666;
         }
 
-        @media (max-width: 1728px) {
+        @media (max-width: 1400px) {
             .container {
-                width: 100%;
-                max-width: 1728px;
+                width: calc(100% - 48px);
+            }
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 1080px) {
+            .container {
+                width: calc(100% - 32px);
+            }
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
         }
 
         @media (max-width: 768px) {
             .container {
+                width: calc(100% - 24px);
                 flex-direction: column;
+                margin-top: 20px;
             }
             
             .sidebar-filter {
@@ -302,8 +317,15 @@
                 margin-left: 0;
                 position: static;
             }
+        }
 
+        @media (max-width: 400px) {
+            .container {
+                width: calc(100% - 20px);
+                margin-top: 16px;
+            }
             .product-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
+                gap: 16px;
             }
         }
