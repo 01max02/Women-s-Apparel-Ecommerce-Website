@@ -41,6 +41,7 @@
 }
 
 body {
+    margin: 0;
     font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f8f9fa;
     line-height: 1.6;
