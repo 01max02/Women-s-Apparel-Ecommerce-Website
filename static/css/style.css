@@ -1,106 +1,124 @@
-html, body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
+
+/* ===========================
+  Color Palette, Buttons & Fonts
+=========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&family=Roboto:wght@300;400;500&display=swap');
+
+/* ===========================
+  Root Variables
+=========================== */
+:root {
+  /* Main palette */
+  --color-mauve: #C5A6A4;       /* Soft Mauve */
+  --color-beige: #F5EDE6;       /* Warm Beige (optional background use) */
+  --color-grey-light: #ECE9E6;  /* Light Grey */
+  --color-charcoal: #2C2C2C;    /* Charcoal for main text */
+  --color-white: #FFFFFF;
+
+  /* Supporting shades (mauve & grey) */
+  --color-mauve-dark: #9B7D7C;
+  --color-mauve-soft: #D7C3C2;
+  --color-grey-mid: #B0B0B0;
+  --color-grey-dark: #6E6E6E;
+
+  /* Typography */
+  --font-heading: 'Montserrat', 'Roboto', sans-serif;
+  --font-body: 'Poppins', 'Roboto', sans-serif;
+
+  /* Sizing */
+  --font-size-base: 16px;
+  --line-height-base: 1.6;
 }
+
+/* ===========================
+   Global Reset
+=========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-	font-family: Arial, sans-serif;
-	background: #f8f8f8;
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-charcoal);
+  background-color: var(--color-white);
 }
+
+/* ===========================
+   Typography
+=========================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-charcoal);
+  margin-bottom: 0.5em;
+}
+
+p {
+  color: var(--color-grey-dark);
+  margin-bottom: 1em;
+}
+
+/* ===========================
+   Links & Buttons
+=========================== */
+a {
+  color: var(--color-mauve);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-mauve-dark);
+}
+
+button {
+  font-family: var(--font-heading);
+  background-color: var(--color-mauve);
+  color: var(--color-white);
+  border: none;
+  border-radius: 6px;
+  padding: 0.6em 1.2em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--color-mauve-dark);
+}
+
+/* ===========================
+   Layout Helpers
+=========================== */
 .container {
-	flex: 1 0 auto;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
-.site-footer {
-	background: #978184;
-	color: #fff;
-	text-align: center;
-	padding: 1rem 0;
-	flex-shrink: 0;
-	width: 100%;
+
+.section {
+  padding: 4em 0;
 }
-.site-header, .site-footer {
-	background: #978184;
-	color: #fff;
-	padding: 1rem 2rem;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+
+.bg-mauve {
+  background-color: var(--color-mauve);
+  color: var(--color-white);
 }
-.site-header nav a {
-	color: #fff;
-	margin-left: 1rem;
-	text-decoration: none;
+
+.bg-white {
+  background-color: var(--color-white);
 }
-.container {
-	display: flex;
-	max-width: 1200px;
-	margin: 2rem auto;
-	gap: 2rem;
+
+.text-mauve {
+  color: var(--color-mauve);
 }
-aside {
-	width: 200px;
+
+.text-grey {
+  color: var(--color-grey-mid);
 }
-main {
-	flex: 1;
-}
-.sidebar {
-	background: #fff;
-	padding: 1rem;
-	border-radius: 8px;
-	box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-.product-list {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 2rem;
-}
-.product-card {
-	background: #fff;
-	border-radius: 8px;
-	box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-	padding: 1rem;
-	width: 220px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-.product-image {
-	width: 100%;
-	max-width: 120px;
-	max-height: 120px;
-	aspect-ratio: 1/1;
-	object-fit: contain;
-	border-radius: 6px;
-	box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-	margin-bottom: 0.5rem;
-	display: block;
-}
-.product-title {
-	font-size: 1.2rem;
-	margin: 0.5rem 0 0.2rem 0;
-}
-.product-desc {
-	font-size: 0.95rem;
-	color: #555;
-	margin-bottom: 0.5rem;
-}
-.product-price {
-	font-weight: bold;
-	color: #c0392b;
-	margin-bottom: 0.5rem;
-}
-.add-to-cart {
-	background: #c0392b;
-	color: #fff;
-	border: none;
-	padding: 0.5rem 1rem;
-	border-radius: 4px;
-	cursor: pointer;
-	transition: background 0.2s;
-}
-.add-to-cart:hover {
-	background: #a93226;
+
+.text-dark {
+  color: var(--color-charcoal);
 }
