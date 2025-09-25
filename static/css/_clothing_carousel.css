@@ -1,5 +1,4 @@
 /* CSS for clothing carousel */
-
         * {
             margin: 0;
             padding: 0;
@@ -9,18 +8,62 @@
 
 
         .carousel-container {
-            width: 100vw;
+            width: calc(100% - 48px);
+            max-width: 1600px;  /* Match the max-width of filters container */
             position: relative;
             overflow: hidden;
-            margin: 0;
+            margin: 0 auto;
             transform: none;
             padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .carousel-breadcrumb {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1rem;
+            color: #444;
+            margin: 18px 0 10px 0;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0;
+            width: 100%;
+        }
+
+        .breadcrumb-link {
+            color: #444;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .breadcrumb-link:hover {
+            color: #ff4081;
+        }
+
+        .breadcrumb-separator {
+            margin: 0 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .carousel-breadcrumb .active {
+            color: #ff4081;
+            font-weight: 600;
         }
 
         .carousel-wrapper {
             display: flex;
             transition: transform 0.3s ease-in-out;
-            gap: 20px;
+            gap: 10px;
+            justify-content: flex-start;
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+            box-sizing: border-box;
         }
 
         .card {
@@ -105,7 +148,7 @@
 
         .nav-button.next {
             /* Push the next button further inside for better visibility */
-            right: 70px;
+            right: 10px;
         }
 
         .nav-button svg {
@@ -127,19 +170,19 @@
         /* Updated responsive breakpoints for smaller cards */
         @media (max-width: 1400px) {
             .carousel-container {
-                width: 100vw;
+                width: calc(100% - 48px);
             }
         }
 
         @media (max-width: 1080px) {
             .carousel-container {
-                width: 100vw;
+                width: calc(100% - 32px);  /* Slightly smaller margins on medium screens */
             }
         }
 
         @media (max-width: 720px) {
             .carousel-container {
-                width: 100vw;
+                width: calc(100% - 24px);  /* Even smaller margins on smaller screens */
             }
         }
 
@@ -150,7 +193,7 @@
                 height: 360px;
             }
             .carousel-container {
-                width: 100vw;
-                padding: 0 10px;
+                width: calc(100% - 20px);  /* Smallest margins on mobile */
+                padding: 0;
             }
         }
