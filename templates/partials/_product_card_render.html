@@ -1,0 +1,38 @@
+{# Jinja2 partial for rendering a product card from backend data #}
+<div class="product-card">
+    <div class="product-image-container">
+        <img src="{{ product.primaryImage }}" alt="{{ product.name }}" class="product-image primary">
+        <img src="{{ product.secondaryImage }}" alt="{{ product.name }}" class="product-image secondary">
+        <div class="hover-actions">
+            <button class="action-btn wishlist-btn" onclick="toggleWishlist('{{ product.id }}', this)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+            </button>
+            <button class="add-to-cart-btn" onclick="addToCart('{{ product.id }}')">Add to Cart</button>
+            <button class="action-btn cart-btn" onclick="addToCart('{{ product.id }}')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <div class="product-details">
+        <div class="product-info">
+            <div class="product-left">
+                <h3 class="product-name">{{ product.name }}</h3>
+                <div class="color-swatches">
+                    {% for color in product.colors %}
+                        <div class="color-swatch{% if loop.first %} active{% endif %}" style="background-color: {{ color }}" onclick="selectColor(this, '{{ color }}')"></div>
+                    {% endfor %}
+                </div>
+                <div class="price-container">
+                    <span class="price">₱{{ product.price }}</span>
+                    {% if product.originalPrice %}<span class="original-price">₱{{ product.originalPrice }}</span>{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
