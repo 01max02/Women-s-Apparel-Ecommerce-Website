@@ -1,0 +1,137 @@
+<!-- Reviews Dropdown Component -->
+    <div class="reviews-container">
+        <!-- Reviews Header -->
+        <div class="reviews-header">
+            <div class="reviews-title">
+                <h2>Reviews</h2>
+                <span class="reviews-count">{{ average_rating }} ({{ reviews_count }})</span>
+            </div>
+            <div class="reviews-actions">
+                <button class="sort-btn" id="sort-btn" style="display: none;">
+                    <i class="fas fa-sort"></i>
+                    Latest
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <button class="view-all-btn" id="view-all-btn" onclick="toggleViewAll()">View All</button>
+                <button class="write-review-btn">Write a Review</button>
+            </div>
+        </div>
+
+        <!-- Filters (hidden by default, shown when View All is clicked) -->
+        <div class="filters-section" id="filters-section" style="display: none;">
+            <div class="filter-group">
+                <label>Filter by Rating:</label>
+                <select id="rating-filter">
+                    <option value="all">All Ratings</option>
+                    <option value="5">5 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="2">2 Stars</option>
+                    <option value="1">1 Star</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Filter by Variation:</label>
+                <select id="variation-filter">
+                    <option value="all">All Variations</option>
+                    <option value="black-xs">Black, XS</option>
+                    <option value="black-s">Black, S</option>
+                    <option value="black-m">Black, M</option>
+                    <option value="white-s">White, S</option>
+                    <option value="white-m">White, M</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Reviews List -->
+        <div class="reviews-list" id="reviews-list">
+            {% for review in reviews %}
+            <div class="review-item" data-rating="{{ review.rating }}" data-variation="{{ review.variation_data }}">
+                <div class="review-header">
+                    <div class="user-info">
+                        <img src="{{ url_for('static', filename='images/' + review.user_avatar) }}" alt="{{ review.user_name }}" class="user-avatar">
+                        <div class="user-details">
+                            <div class="username">
+                                {{ review.user_name }}
+                                {% if review.is_verified %}
+                                <i class="fas fa-check-circle verified"></i>
+                                {% endif %}
+                            </div>
+                            <div class="review-date">Posted on {{ review.date }}</div>
+                        </div>
+                    </div>
+                    <div class="review-actions">
+                        <button class="like-btn">
+                            <i class="far fa-heart"></i>
+                            <span>{{ review.likes }}</span>
+                        </button>
+                        <button class="more-btn">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="review-content">
+                    <div class="star-rating">
+                        {% for i in range(1, 6) %}
+                            {% if i <= review.rating %}
+                                <i class="fas fa-star"></i>
+                            {% else %}
+                                <i class="far fa-star"></i>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="variation-info">
+                        <span class="variation-label">Variation:</span>
+                        <span class="variation-value">{{ review.variation }}</span>
+                    </div>
+
+                    <p class="review-text">
+                        "{{ review.review_text }}"
+                    </p>
+
+
+
+                    {% if review.has_image %}
+                    <div class="product-image">
+                        <img src="{{ url_for('static', filename='images/Tube Tops.png') }}" alt="Product photo from review">
+                    </div>
+                    {% endif %}
+                </div>
+
+                {% if review.seller_response %}
+                <div class="seller-response">
+                    <div class="seller-info">
+                        <strong>Seller Response:</strong>
+                    </div>
+                    <p>{{ review.seller_response }}</p>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+
+    </div>
+
+    <script>
+        function toggleViewAll() {
+            const filtersSection = document.getElementById('filters-section');
+            const sortBtn = document.getElementById('sort-btn');
+            const viewAllBtn = document.getElementById('view-all-btn');
+            
+            if (filtersSection.style.display === 'none') {
+                // Show filters and sort button
+                filtersSection.style.display = 'flex';
+                sortBtn.style.display = 'flex';
+                viewAllBtn.textContent = 'Hide Filters';
+            } else {
+                // Hide filters and sort button
+                filtersSection.style.display = 'none';
+                sortBtn.style.display = 'none';
+                viewAllBtn.textContent = 'View All';
+            }
+        }
+    </script>
+<!-- End Reviews Dropdown Component -->
