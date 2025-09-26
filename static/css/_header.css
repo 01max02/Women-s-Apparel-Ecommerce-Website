@@ -231,7 +231,11 @@ body {
     top: 50%;
     transform: translateY(-50%);
     color: #6b7280;
-    font-size: 18px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
 }
 
@@ -539,10 +543,11 @@ body {
         top: 50%;
         transform: translateY(-50%);
         color: #6b7280;
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
         display: flex;
         align-items: center;
+        justify-content: center;
         transition: color 0.3s ease, transform 0.3s ease;
     }
 
@@ -591,7 +596,8 @@ body {
     
     .search-icon {
         left: 14px;
-        font-size: 16px;
+        width: 16px;
+        height: 16px;
     }
     
     .icon-btn {
