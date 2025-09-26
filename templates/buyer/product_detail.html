@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Tube Top - Product Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/product_detail.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_to_cart_popup.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/_product_dropdown_details.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/_product_card.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/_reviews_dropdown.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Include Header -->
+    {% include 'partials/_header.html' %}
+    
+    <div class="container">
+        <!-- Product Images Section -->
+        <div class="product-images">
+            <div class="main-image">
+                <img id="mainImage" src="{{ url_for('static', filename='images/Tube Tops.png') }}" alt="Plain Fitted Waistcoat Vest">
+                <div class="zoom-box" id="zoomBox"></div>
+                <div class="zoom-viewer" id="zoomViewer">
+                    <img id="zoomImage" src="{{ url_for('static', filename='images/Tube Tops.png') }}" alt="Zoomed view">
+                </div>
+                <div class="image-overlay-buttons">
+                    <button class="wishlist-btn" id="wishlistBtn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="thumbnail-images">
+                <img src="{{ url_for('static', filename='images/Tube Tops.png') }}" alt="Tube Top front view" class="thumbnail active" data-index="0" onclick="changeMainImage(this, 0)">
+                <img src="{{ url_for('static', filename='images/Tube Tops.png') }}" alt="Tube Top side view" class="thumbnail" data-index="1" onclick="changeMainImage(this, 1)">
+                <img src="{{ url_for('static', filename='images/Tube Tops.png') }}" alt="Tube Top back view" class="thumbnail" data-index="2" onclick="changeMainImage(this, 2)">
+            </div>
+        </div>
+
+        <!-- Product Details Section -->
+        <div class="product-details">
+            <!-- Report Button in Upper Right -->
+            <div class="report-container">
+                <span class="report-text">Report</span>
+                <button class="report-btn-details" onclick="reportProduct()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb">
+                <a href="/" onclick="navigateToHome(event)">Home</a>
+                <span>></span>
+                <a href="/category/tops" onclick="navigateToCategory(event, 'tops')">Tops</a>
+                <span>></span>
+                <span>Tube Top</span>
+            </nav>
+
+            <!-- Product Info -->
+            <h1 class="product-title">Stylish Tube Top</h1>
+            
+            <!-- Price Section -->
+            <div class="price-section">
+                <div class="price-container">
+                    <div class="price-main">₱7,125 <span class="currency">PHP</span></div>
+                    <div class="price-details">
+                        <span class="original-price">₱9,500</span>
+                        <span class="discount-badge">25% OFF</span>
+                    </div>
+                </div>
+                
+                <!-- Ratings and Sales Section -->
+                <div class="ratings-sales-section">
+                    <div class="rating-container">
+                        <div class="stars">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffc107" stroke="#ffc107" stroke-width="2">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
+                            </svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffc107" stroke="#ffc107" stroke-width="2">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
+                            </svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffc107" stroke="#ffc107" stroke-width="2">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
+                            </svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffc107" stroke="#ffc107" stroke-width="2">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
+                            </svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e0e0e0" stroke-width="2">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
+                            </svg>
+                        </div>
+                        <span class="rating-text">4.0</span>
+                    </div>
+                    <span class="separator">|</span>
+                    <div class="reviews-container">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span class="reviews-text">248 Ratings</span>
+                    </div>
+                    <span class="separator">|</span>
+                    <div class="sold-container">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M16 10a4 4 0 0 1-8 0"></path>
+                        </svg>
+                        <span class="sold-text">1.2k Sold</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Color Selection -->
+            <div class="color-section">
+                <label class="section-label">COLOR <span class="selected-color">Black</span></label>
+                <div class="color-options">
+                    <button class="color-option active" data-color="Black" data-stock='{"XS": 5, "S": 8, "M": 12, "L": 6, "XL": 3, "XXL": 0}' style="background-color: #000;" onclick="selectColor(this)" title="Black"></button>
+                    <button class="color-option" data-color="Yellow" data-stock='{"XS": 2, "S": 4, "M": 7, "L": 9, "XL": 5, "XXL": 2}' style="background-color: #FFD700;" onclick="selectColor(this)" title="Yellow"></button>
+                    <button class="color-option" data-color="Red" data-stock='{"XS": 0, "S": 3, "M": 8, "L": 10, "XL": 4, "XXL": 1}' style="background-color: #DC143C;" onclick="selectColor(this)" title="Red"></button>
+                    <button class="color-option" data-color="Blue" data-stock='{"XS": 4, "S": 6, "M": 9, "L": 8, "XL": 2, "XXL": 0}' style="background-color: #0066CC;" onclick="selectColor(this)" title="Blue"></button>
+                    <button class="color-option" data-color="Brown" data-stock='{"XS": 1, "S": 0, "M": 5, "L": 7, "XL": 6, "XXL": 3}' style="background-color: #8B4513;" onclick="selectColor(this)" title="Brown"></button>
+                </div>
+            </div>
+
+            <!-- Size Selection -->
+            <div class="size-section">
+                <label class="section-label">SIZE</label>
+                <div class="size-options">
+                    <button class="size-option active" data-size="XS" onclick="selectSize(this)">XS</button>
+                    <button class="size-option" data-size="S" onclick="selectSize(this)">S</button>
+                    <button class="size-option" data-size="M" onclick="selectSize(this)">M</button>
+                    <button class="size-option" data-size="L" onclick="selectSize(this)">L</button>
+                    <button class="size-option" data-size="XL" onclick="selectSize(this)">XL</button>
+                    <button class="size-option" data-size="XXL" onclick="selectSize(this)">XXL</button>
+                </div>
+                <div class="size-info">
+                    <span>Model is 5'10", wearing a size S</span>
+                    <span class="size-info-separator">|</span>
+                    <a href="#" class="size-guide">SIZE GUIDE</a>
+                </div>
+                
+                <!-- Shipping Info -->
+                <div class="shipping-info">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="shipping-icon">
+                        <rect x="1" y="3" width="15" height="13"></rect>
+                        <path d="m16 6 4 4v6"></path>
+                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                    </svg>
+                    <span>Free shipping on orders over ₱2,000  |  Easy returns within 30 days</span>
+                </div>
+            </div>
+
+            <!-- Quantity and Stock Section -->
+            <div class="quantity-section">
+                <div class="quantity-stock-header">
+                    <div class="quantity-label-group">
+                        <label class="section-label">QUANTITY</label>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" onclick="decreaseQuantity()" id="decreaseBtn">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                            <input type="number" class="quantity-input" value="1" min="1" max="10" id="quantityInput" onchange="updateQuantity()">
+                            <button class="quantity-btn" onclick="increaseQuantity()" id="increaseBtn">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="stock-section">
+                        <span class="stock-indicator" id="stockIndicator">5</span>
+                        <span class="stock-label">in stock</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add to Bag Button -->
+            <button class="add-to-bag-btn" onclick="addToBag()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2l3 6v8a2 2 0 002 2h2a2 2 0 002-2V8l3-6"/>
+                    <path d="M5 8h14l-1 13H6L5 8z"/>
+                    <path d="M10 10v4"/>
+                    <path d="M14 10v4"/>
+                </svg>
+                ADD TO BAG
+            </button>
+        </div>
+    </div>
+
+    <!-- Bottom Tabs -->
+    <div class="bottom-tabs">
+        <button class="tab-btn active" onclick="switchTab(this, 'product-details')">Product Details</button>
+        <button class="tab-btn" onclick="switchTab(this, 'ratings')">Ratings & Reviews</button>
+        <button class="tab-btn" onclick="switchTab(this, 'faqs')">FAQs</button>
+    </div>
+
+    <div class="tab-content">
+        <div id="product-details" class="tab-panel active">
+
+            <!-- Include Product Dropdown Details -->
+            {% include 'partials/_product_dropdown_details.html' %}
+        </div>
+        <div id="ratings" class="tab-panel">
+            <!-- Include Reviews Dropdown -->
+            {% include 'partials/_reviews_dropdown.html' %}
+        </div>
+        <div id="faqs" class="tab-panel">
+            <h3>Frequently Asked Questions</h3>
+            <p>Common questions and answers about this product will be shown here.</p>
+        </div>
+    </div>
+
+    <!-- Include Footer -->
+    {% include 'partials/_footer.html' %}
+
+    <!-- Include Add to Cart Popup -->
+    {% include 'partials/_add_to_cart_pop.html' %}
+
+    <script src="{{ url_for('static', filename='js/product_detail.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/_product_dropdown_details.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/_product_card.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/_reviews_dropdown.js') }}"></script>
+</body>
+</html>
