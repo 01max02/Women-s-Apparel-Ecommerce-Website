@@ -5,574 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Cart - SHOP.CO</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --soft-mauve: #C5A6A4;
-            --warm-beige: #F5EDE6;
-            --light-grey: #ECE9E6;
-            --charcoal: #2C2C2C;
-            --white: #FFFFFF;
-            --red: #FF4444;
-            --green: #22C55E;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--warm-beige);
-            color: var(--charcoal);
-            line-height: 1.6;
-        }
-
-        /* Header Styles */
-        .header {
-            background-color: var(--white);
-            padding: 1rem 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--charcoal);
-            text-decoration: none;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--charcoal);
-            font-weight: 400;
-            transition: color 0.3s ease;
-        }
-
-        .nav-menu a:hover {
-            color: var(--soft-mauve);
-        }
-
-        .search-container {
-            position: relative;
-            flex: 1;
-            max-width: 300px;
-            margin: 0 2rem;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 0.75rem 1rem 0.75rem 2.5rem;
-            border: 1px solid var(--light-grey);
-            border-radius: 25px;
-            background-color: var(--light-grey);
-            font-family: inherit;
-            outline: none;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--charcoal);
-        }
-
-        .header-icons {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .icon-btn {
-            position: relative;
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            color: var(--charcoal);
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 50%;
-            transition: background-color 0.3s ease;
-        }
-
-        .icon-btn:hover {
-            background-color: var(--light-grey);
-        }
-
-        .cart-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background-color: var(--soft-mauve);
-            color: white;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            font-size: 0.7rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Main Content */
-        .main-container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 2rem;
-        }
-
-        .cart-section {
-            background-color: var(--white);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .cart-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1.5rem;
-        }
-
-        .cart-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--charcoal);
-        }
-
-        .item-count {
-            color: var(--soft-mauve);
-            font-weight: 400;
-        }
-
-        .shipping-notice {
-            background-color: var(--light-grey);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .shipping-icon {
-            font-size: 1.2rem;
-            color: var(--soft-mauve);
-        }
-
-        .shipping-text {
-            font-size: 0.9rem;
-            color: var(--charcoal);
-        }
-
-        /* Product Card */
-        .product-card {
-            border: 1px solid var(--light-grey);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            display: flex;
-            gap: 1rem;
-        }
-
-        .product-image {
-            width: 100px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 8px;
-            background-color: var(--light-grey);
-        }
-
-        .product-details {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .product-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--charcoal);
-            margin-bottom: 0.5rem;
-        }
-
-        .product-specs {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .product-actions {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .qty-btn {
-            width: 32px;
-            height: 32px;
-            border: 1px solid var(--light-grey);
-            background-color: var(--white);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1rem;
-            color: var(--charcoal);
-        }
-
-        .qty-btn:hover {
-            background-color: var(--light-grey);
-        }
-
-        .qty-input {
-            width: 50px;
-            text-align: center;
-            border: 1px solid var(--light-grey);
-            border-radius: 4px;
-            padding: 0.5rem;
-            font-family: inherit;
-        }
-
-        .product-price {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--charcoal);
-        }
-
-        .product-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .product-link {
-            font-size: 0.85rem;
-            color: var(--soft-mauve);
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .product-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Order Summary */
-        .order-summary {
-            background-color: var(--white);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            height: fit-content;
-            position: sticky;
-            top: 100px;
-        }
-
-        .summary-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--charcoal);
-            margin-bottom: 1.5rem;
-        }
-
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .summary-label {
-            color: #666;
-        }
-
-        .summary-value {
-            font-weight: 500;
-            color: var(--charcoal);
-        }
-
-        .discount {
-            color: var(--red);
-        }
-
-        .total-row {
-            border-top: 1px solid var(--light-grey);
-            padding-top: 1rem;
-            margin-top: 1rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .promo-section {
-            margin: 1.5rem 0;
-        }
-
-        .promo-container {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .promo-input {
-            flex: 1;
-            padding: 0.75rem;
-            border: 1px solid var(--light-grey);
-            border-radius: 8px;
-            font-family: inherit;
-            outline: none;
-        }
-
-        .promo-input:focus {
-            border-color: var(--soft-mauve);
-        }
-
-        .apply-btn {
-            background-color: var(--charcoal);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-family: inherit;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .apply-btn:hover {
-            background-color: #1a1a1a;
-        }
-
-        .checkout-btn {
-            width: 100%;
-            background-color: var(--charcoal);
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-bottom: 1rem;
-            transition: background-color 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .checkout-btn:hover {
-            background-color: #1a1a1a;
-        }
-
-        .paypal-btn {
-            width: 100%;
-            background-color: #0070ba;
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .paypal-btn:hover {
-            background-color: #005ea6;
-        }
-
-        /* Saved Items */
-        .saved-section {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--light-grey);
-        }
-
-        .saved-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--charcoal);
-            margin-bottom: 1rem;
-        }
-
-        .no-saved-items {
-            color: #666;
-            font-style: italic;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .search-container {
-                max-width: 200px;
-                margin: 0 1rem;
-            }
-
-            .main-container {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-                padding: 0 1rem;
-            }
-
-            .order-summary {
-                position: static;
-            }
-
-            .product-card {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .product-image {
-                width: 100%;
-                height: 200px;
-                align-self: center;
-            }
-
-            .product-actions {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: center;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/_header.css') }}">
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <div class="header-container">
-            <a href="#" class="logo">SHOP.CO</a>
-            
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="#">Clothing</a></li>
-                    <li><a href="#">Shoes</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li><a href="#">What's New</a></li>
-                </ul>
-            </nav>
-
-            <div class="search-container">
-                <span class="search-icon">🔍</span>
-                <input type="text" class="search-input" placeholder="Search">
-            </div>
-
-            <div class="header-icons">
-                <button class="icon-btn">
-                    🛒
-                    <span class="cart-badge">2</span>
-                </button>
-                <button class="icon-btn">❤️</button>
-                <button class="icon-btn">👤</button>
-            </div>
-        </div>
-    </header>
+    {% include 'partials/_header.html' %}
 
     <!-- Main Content -->
     <div class="main-container">
         <!-- Cart Section -->
         <div class="cart-section">
             <div class="cart-header">
-                <h1 class="cart-title">My Bag <span class="item-count">(2 ITEMS)</span></h1>
+                <h1 class="cart-title">My Bag</h1>
+                <span class="item-count"><span class="item-number">{{ cart_items|length if cart_items else 0 }}</span> <span class="item-text">ITEM{{ 's' if cart_items and cart_items|length != 1 else '' }}</span></span>
             </div>
 
             <div class="shipping-notice">
-                <span class="shipping-icon">🚚</span>
+                <span class="shipping-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="3" width="15" height="13"></rect>
+                        <polygon points="16,3 22,9 22,16 16,16"></polygon>
+                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                    </svg>
+                </span>
                 <span class="shipping-text">These items are going fast. Check out now to make them yours.</span>
             </div>
 
             <!-- Product Cards -->
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=100&h=120&fit=crop" alt="Plain Fitted Waistcoat Vest" class="product-image">
-                <div class="product-details">
-                    <h3 class="product-name">Plain Fitted Waistcoat Vest</h3>
-                    <div class="product-specs">
-                        Size: Medium<br>
-                        Color: Red
-                    </div>
-                    <div class="product-actions">
-                        <div class="quantity-controls">
-                            <button class="qty-btn" onclick="updateQuantity(1, -1)">−</button>
-                            <input type="number" class="qty-input" value="1" id="qty-1" readonly>
-                            <button class="qty-btn" onclick="updateQuantity(1, 1)">+</button>
+            {% if cart_items %}
+                {% for item in cart_items %}
+                <div class="product-card">
+                    <img src="{{ item.image_url if item.image_url else url_for('static', filename='images/product_1.jpg') }}" alt="{{ item.name }}" class="product-image">
+                    <div class="product-details">
+                        <a href="#" class="store-name" onclick="return false;">{{ item.store_name|default('SHOP.CO Store') }}</a>
+                        <h3 class="product-name">{{ item.name }}</h3>
+                        <div class="product-specs">
+                            Size: {{ item.size }}<br>
+                            Color: {{ item.color }}
                         </div>
-                        <div class="product-price">$125.00</div>
-                    </div>
-                    <div class="product-links">
-                        <a href="#" class="product-link">Save for later</a>
-                        <a href="#" class="product-link">Edit</a>
-                        <a href="#" class="product-link" onclick="removeItem(1)">Remove</a>
+                        <div class="product-actions">
+                            <div class="quantity-controls">
+                                <button class="qty-btn" onclick="updateQuantity({{ item.id }}, -1)">−</button>
+                                <input type="number" class="qty-input" value="{{ item.quantity }}" id="qty-{{ item.id }}" readonly>
+                                <button class="qty-btn" onclick="updateQuantity({{ item.id }}, 1)">+</button>
+                            </div>
+                            <div class="product-price">${{ "%.2f"|format(item.price) }}</div>
+                        </div>
+                        <div class="product-links">
+                            <a href="#" class="product-link" onclick="saveForLater({{ item.id }})">Save for later</a>
+                            <a href="#" class="product-link">Edit</a>
+                            <a href="#" class="product-link" onclick="removeItem({{ item.id }})">Remove</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=100&h=120&fit=crop" alt="Plain Fitted Waistcoat Vest" class="product-image">
-                <div class="product-details">
-                    <h3 class="product-name">Plain Fitted Waistcoat Vest</h3>
-                    <div class="product-specs">
-                        Size: Medium<br>
-                        Color: Red
-                    </div>
-                    <div class="product-actions">
-                        <div class="quantity-controls">
-                            <button class="qty-btn" onclick="updateQuantity(2, -1)">−</button>
-                            <input type="number" class="qty-input" value="1" id="qty-2" readonly>
-                            <button class="qty-btn" onclick="updateQuantity(2, 1)">+</button>
-                        </div>
-                        <div class="product-price">$125.00</div>
-                    </div>
-                    <div class="product-links">
-                        <a href="#" class="product-link">Save for later</a>
-                        <a href="#" class="product-link">Edit</a>
-                        <a href="#" class="product-link" onclick="removeItem(2)">Remove</a>
-                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-cart">
+                    <p>Your cart is empty</p>
+                    <a href="{{ url_for('homepage') }}" class="continue-shopping-btn">Continue Shopping</a>
                 </div>
-            </div>
+            {% endif %}
 
             <!-- Saved Items Section -->
             <div class="saved-section">
                 <h2 class="saved-title">Saved Items</h2>
-                <p class="no-saved-items">You have no saved items.</p>
+                <div id="saved-items-container">
+                    <p class="no-saved-items" id="no-saved-message">You have no saved items.</p>
+                </div>
             </div>
         </div>
 
@@ -582,30 +83,37 @@
             
             <div class="summary-row">
                 <span class="summary-label">Subtotal</span>
-                <span class="summary-value" id="subtotal">$250</span>
+                <span class="summary-value" id="subtotal">${{ "%.2f"|format(subtotal|default(0)) }}</span>
             </div>
             
             <div class="summary-row">
                 <span class="summary-label">Discount (-20%)</span>
-                <span class="summary-value discount" id="discount">-$50</span>
+                <span class="summary-value discount" id="discount">-${{ "%.2f"|format(discount|default(0)) }}</span>
             </div>
             
             <div class="summary-row">
                 <span class="summary-label">Delivery Fee</span>
-                <span class="summary-value" id="delivery">$15</span>
+                <span class="summary-value" id="delivery">${{ "%.2f"|format(delivery_fee|default(15)) }}</span>
             </div>
             
             <div class="summary-row total-row">
                 <span class="summary-label">Total</span>
-                <span class="summary-value" id="total">$215</span>
+                <span class="summary-value" id="total">${{ "%.2f"|format(total|default(0)) }}</span>
             </div>
 
-            <div class="promo-section">
                 <div class="promo-container">
-                    <input type="text" class="promo-input" placeholder="Add promo code" id="promoCode">
+                    <div class="promo-input-wrapper">
+                        <span class="promo-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                            </svg>
+                        </span>
+                        <input type="text" class="promo-input" placeholder="Add promo code" id="promoCode">
+                    </div>
                     <button class="apply-btn" onclick="applyPromo()">Apply</button>
                 </div>
-            </div>
+
 
             <button class="checkout-btn" onclick="goToCheckout()">
                 Go to Checkout →
@@ -619,10 +127,8 @@
 
     <script>
         // Cart functionality
-        let cartItems = [
-            { id: 1, name: "Plain Fitted Waistcoat Vest", price: 125, quantity: 1 },
-            { id: 2, name: "Plain Fitted Waistcoat Vest", price: 125, quantity: 1 }
-        ];
+        let cartItems = {{ cart_items|tojson if cart_items else '[]' }};
+        let savedItems = [];
 
         function updateQuantity(itemId, change) {
             const item = cartItems.find(item => item.id === itemId);
@@ -642,22 +148,114 @@
             }
         }
 
+        function saveForLater(itemId) {
+            const item = cartItems.find(item => item.id === itemId);
+            if (item) {
+                // Move item from cart to saved items
+                savedItems.push(item);
+                cartItems = cartItems.filter(item => item.id !== itemId);
+                
+                // Remove from cart display
+                document.querySelector(`#qty-${itemId}`).closest('.product-card').remove();
+                
+                // Add to saved items display
+                addToSavedItemsDisplay(item);
+                
+                // Update cart
+                updateItemCount();
+                updateSummary();
+                updateSavedItemsDisplay();
+            }
+        }
+
+        function addToSavedItemsDisplay(item) {
+            const savedContainer = document.getElementById('saved-items-container');
+            const noSavedMessage = document.getElementById('no-saved-message');
+            
+            // Hide "no saved items" message
+            noSavedMessage.style.display = 'none';
+            
+            // Create saved item HTML
+            const savedItemHTML = `
+                <div class="saved-item" id="saved-${item.id}">
+                    <img src="${item.image_url || "{{ url_for('static', filename='images/product_1.jpg') }}"}" alt="${item.name}" class="saved-item-image">
+                    <div class="saved-item-details">
+                        <a href="#" class="store-name" onclick="return false;">${item.store_name || 'SHOP.CO Store'}</a>
+                        <h4 class="saved-item-name">${item.name}</h4>
+                        <div class="saved-item-specs">
+                            Size: ${item.size}<br>
+                            Color: ${item.color}
+                        </div>
+                        <div class="saved-item-price">$${parseFloat(item.price).toFixed(2)}</div>
+                        <div class="saved-item-links">
+                            <a href="#" class="product-link" onclick="moveToCart(${item.id})">Move to bag</a>
+                            <a href="#" class="product-link" onclick="removeSavedItem(${item.id})">Remove</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            savedContainer.insertAdjacentHTML('beforeend', savedItemHTML);
+        }
+
+        function moveToCart(itemId) {
+            const item = savedItems.find(item => item.id === itemId);
+            if (item) {
+                // Move item back to cart
+                cartItems.push(item);
+                savedItems = savedItems.filter(item => item.id !== itemId);
+                
+                // Remove from saved items display
+                document.getElementById(`saved-${itemId}`).remove();
+                
+                // Add back to cart display (reload page for simplicity, or you could recreate the HTML)
+                location.reload();
+            }
+        }
+
+        function removeSavedItem(itemId) {
+            if (confirm('Are you sure you want to remove this saved item?')) {
+                savedItems = savedItems.filter(item => item.id !== itemId);
+                document.getElementById(`saved-${itemId}`).remove();
+                updateSavedItemsDisplay();
+            }
+        }
+
+        function updateSavedItemsDisplay() {
+            const noSavedMessage = document.getElementById('no-saved-message');
+            if (savedItems.length === 0) {
+                noSavedMessage.style.display = 'block';
+            } else {
+                noSavedMessage.style.display = 'none';
+            }
+        }
+
         function updateItemCount() {
             const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-            document.querySelector('.item-count').textContent = `(${totalItems} ITEM${totalItems !== 1 ? 'S' : ''})`;
-            document.querySelector('.cart-badge').textContent = totalItems;
+            const itemNumberElement = document.querySelector('.item-number');
+            const itemTextElement = document.querySelector('.item-text');
+            
+            if (itemNumberElement && itemTextElement) {
+                itemNumberElement.textContent = totalItems;
+                itemTextElement.textContent = `ITEM${totalItems !== 1 ? 'S' : ''}`;
+            }
+            
+            const cartBadge = document.querySelector('.cart-badge');
+            if (cartBadge) {
+                cartBadge.textContent = totalItems;
+            }
         }
 
         function updateSummary() {
-            const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const subtotal = cartItems.reduce((sum, item) => sum + (parseFloat(item.price) * parseInt(item.quantity)), 0);
             const discount = subtotal * 0.2; // 20% discount
             const delivery = 15;
             const total = subtotal - discount + delivery;
 
-            document.getElementById('subtotal').textContent = `$${subtotal}`;
-            document.getElementById('discount').textContent = `-$${discount.toFixed(0)}`;
-            document.getElementById('delivery').textContent = `$${delivery}`;
-            document.getElementById('total').textContent = `$${total.toFixed(0)}`;
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('discount').textContent = `-$${discount.toFixed(2)}`;
+            document.getElementById('delivery').textContent = `$${delivery.toFixed(2)}`;
+            document.getElementById('total').textContent = `$${total.toFixed(2)}`;
         }
 
         function applyPromo() {
@@ -678,8 +276,7 @@
                 alert('Your cart is empty!');
                 return;
             }
-            alert('Redirecting to checkout...');
-            // Checkout logic would go here
+            window.location.href = "{{ url_for('buyer_checkout') }}";
         }
 
         // Initialize the page
@@ -699,5 +296,6 @@
             }
         });
     </script>
+    <script src="{{ url_for('static', filename='js/cart.js') }}"></script>
 </body>
 </html>

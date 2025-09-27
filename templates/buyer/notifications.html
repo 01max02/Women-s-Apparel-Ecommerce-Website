@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Account Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/my_account.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/_profile_sidebar.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Include Header -->
+    {% include 'partials/_header.html' %}
+    
+    <div class="container">
+        <div class="account-layout">
+            <!-- Include Profile Sidebar -->
+            {% include 'partials/_profile_sidebar.html' %}
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <div class="content-wrapper">
+                    <div class="page-header">
+                        <h1>Notifications</h1>
+                        <p>View your recent notifications and updates</p>
+                    </div>
+
+                    <!-- Notification Tabs -->
+                    <div class="notification-tabs">
+                        <button class="tab-btn active" data-tab="all">All</button>
+                        <button class="tab-btn" data-tab="orders">Orders</button>
+                        <button class="tab-btn" data-tab="promotions">Promotions</button>
+                        <button class="tab-btn" data-tab="system">System</button>
+                    </div>
+
+                    <!-- Notifications List -->
+                    <div class="notifications-list">
+                        {% if notifications %}
+                            {% for notification in notifications %}
+                            <div class="notification-card {{ 'unread' if not notification.read else '' }}" data-type="{{ notification.type }}">
+                                <div class="notification-icon">
+                                    {% if notification.type == 'order' %}
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                                        </svg>
+                                    {% elif notification.type == 'promotion' %}
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                                            <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                                        </svg>
+                                    {% else %}
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                                        </svg>
+                                    {% endif %}
+                                </div>
+                                <div class="notification-content">
+                                    <div class="notification-title">{{ notification.title }}</div>
+                                    <div class="notification-message">{{ notification.message }}</div>
+                                    <div class="notification-time">{{ notification.created_at.strftime('%B %d, %Y at %I:%M %p') if notification.created_at else 'Just now' }}</div>
+                                </div>
+                                {% if not notification.read %}
+                                <div class="unread-indicator"></div>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="empty-notifications">
+                                <div class="empty-icon">
+                                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                                    </svg>
+                                </div>
+                                <h3>No notifications yet</h3>
+                                <p>When you receive notifications, they'll appear here</p>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Mark All as Read Button -->
+                    {% if notifications and notifications|selectattr('read', 'equalto', false)|list|length > 0 %}
+                    <div class="notifications-actions">
+                        <button type="button" class="mark-all-read-btn" id="markAllReadBtn">
+                            Mark all as read
+                        </button>
+                    </div>
+                    {% endif %}
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/_profile_sidebar.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/notifications.js') }}"></script>
+</body>
+</html>
