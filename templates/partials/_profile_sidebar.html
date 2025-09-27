@@ -1,0 +1,57 @@
+<!-- Profile Sidebar -->
+<aside class="sidebar">
+    <div class="profile-section">
+        <div class="avatar">{{ user.username[0].upper() if user and user.username else 'U' }}</div>
+        <div class="profile-info">
+            <h3 class="username">{{ user.username if user and user.username else 'User' }}</h3>
+            <a href="#" class="edit-profile">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+                Edit Profile
+            </a>
+        </div>
+    </div>
+    
+    <nav class="nav-menu">
+        <div class="nav-item expandable {{ 'active' if request.endpoint in ['buyer_my_account', 'buyer_addresses', 'buyer_notifications'] else '' }}">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span>My Account</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6,9 12,15 18,9"></polyline>
+            </svg>
+        </div>
+        <div class="sub-menu">
+            <a href="#" class="sub-item {{ 'active' if request.endpoint == 'buyer_my_account' else '' }}" data-section="profile">Profile</a>
+            <a href="#" class="sub-item" data-section="addresses">Addresses</a>
+            <a href="#" class="sub-item" data-section="notifications">Notifications</a>
+        </div>
+        
+        <a href="{{ url_for('buyer_my_purchase') }}" class="nav-item highlighted {{ 'active' if request.endpoint == 'buyer_my_purchase' else '' }}">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            My Purchase
+        </a>
+        <a href="{{ url_for('buyer_notifications') }}" class="nav-item {{ 'active' if request.endpoint == 'buyer_notifications' else '' }}">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            Notifications
+        </a>
+        <a href="#" class="nav-item">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+            </svg>
+            My Vouchers
+        </a>
+    </nav>
+</aside>

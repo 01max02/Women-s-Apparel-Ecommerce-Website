@@ -1,0 +1,237 @@
+<!-- FAQs Dropdown Section -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/_faqs_dropdown.css') }}">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <div class="container">
+        <header class="page-header">
+            <h1><i class="fas fa-question-circle"></i> Frequently Asked Questions</h1>
+            <p>Common questions and answers about our products and services</p>
+        </header>
+
+        {% if faqs and faqs|length > 3 %}
+        <div class="controls-section">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search FAQs..." onkeyup="searchFaqs(this.value)">
+            </div>
+        </div>
+        {% endif %}
+
+        {% if faqs %}
+        <div class="stats-section">
+            <div class="stat-card">
+                <i class="fas fa-list"></i>
+                <div>
+                    <span class="stat-number">{{ faqs|length }}</span>
+                    <span class="stat-label">Total FAQs</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-eye"></i>
+                <div>
+                    <span class="stat-number">{{ faqs|selectattr('published', 'equalto', true)|list|length }}</span>
+                    <span class="stat-label">Published</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-eye-slash"></i>
+                <div>
+                    <span class="stat-number">{{ faqs|selectattr('published', 'equalto', false)|list|length }}</span>
+                    <span class="stat-label">Drafts</span>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="faqs-container" id="faqsContainer">
+            {% if faqs %}
+                {% for faq in faqs %}
+                <div class="faq-item" data-faq-id="{{ faq.id }}">
+                    <div class="faq-header" onclick="toggleFaq('{{ faq.id }}')">
+                        <div class="faq-question-section">
+                            <div class="faq-question">{{ faq.question }}</div>
+                            <div class="faq-meta">
+                                <span class="faq-category">{{ faq.category|title }}</span>
+                                {% if faq.published %}
+                                <span class="faq-status status-published">
+                                    <i class="fas fa-eye"></i>
+                                    Published
+                                </span>
+                                {% else %}
+                                <span class="faq-status status-draft">
+                                    <i class="fas fa-eye-slash"></i>
+                                    Draft
+                                </span>
+                                {% endif %}
+                                <span>{{ faq.created_at.strftime('%b %d, %Y') if faq.created_at else 'Today' }}</span>
+                            </div>
+                        </div>
+                        <div class="faq-controls">
+                            <button class="expand-btn" onclick="event.stopPropagation()">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        {{ faq.answer|replace('\n', '<br>')|safe }}
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        {% if not faqs %}
+        <div class="empty-state" id="emptyState">
+            <i class="fas fa-question-circle"></i>
+            <h3>No FAQs Available</h3>
+            <p>We're working on adding frequently asked questions to help you better understand our products and services.</p>
+        </div>
+        {% endif %}
+
+        <!-- You May Also Like Section -->
+        <section class="you-may-like">
+            <h3 class="section-title">YOU MAY ALSO LIKE</h3>
+            <div class="products-container">
+                {% set sample_products = [
+                    {'name': 'Classic White Tee', 'price': '1,250', 'image_url': url_for('static', filename='images/product_1.jpg')},
+                    {'name': 'Denim Crop Top', 'price': '2,150', 'image_url': url_for('static', filename='images/product_2.jpg')},
+                    {'name': 'Floral Tube Top', 'price': '1,890', 'image_url': url_for('static', filename='images/product_3.png')},
+                    {'name': 'Striped Tank Top', 'price': '1,450', 'image_url': url_for('static', filename='images/Tank Tops.png')},
+                    {'name': 'Basic Black Tee', 'price': '1,300', 'image_url': url_for('static', filename='images/T-Shirts.png')},
+                    {'name': 'Silk Blouse', 'price': '3,250', 'image_url': url_for('static', filename='images/Blouses.png')},
+                    {'name': 'Button Down Shirt', 'price': '2,890', 'image_url': url_for('static', filename='images/Button-Downs.png')},
+                    {'name': 'Crop Top Basic', 'price': '1,750', 'image_url': url_for('static', filename='images/Crop Top.png')},
+                    {'name': 'Casual Tank', 'price': '1,200', 'image_url': url_for('static', filename='images/Tank Tops.png')},
+                    {'name': 'Summer Tube Top', 'price': '1,650', 'image_url': url_for('static', filename='images/Tube Tops.png')},
+                    {'name': 'Wrap Style Top', 'price': '2,450', 'image_url': url_for('static', filename='images/Wrap Tops.png')},
+                    {'name': 'Elegant Tunic', 'price': '2,990', 'image_url': url_for('static', filename='images/Tunics.png')},
+                    {'name': 'Party Tube Top', 'price': '1,890', 'image_url': url_for('static', filename='images/Tube Tops.png')},
+                    {'name': 'Comfort Tee', 'price': '1,350', 'image_url': url_for('static', filename='images/T-Shirts.png')},
+                    {'name': 'Designer Blouse', 'price': '3,750', 'image_url': url_for('static', filename='images/Blouses.png')},
+                    {'name': 'Casual Crop', 'price': '1,550', 'image_url': url_for('static', filename='images/Crop Top.png')},
+                    {'name': 'Premium Tank', 'price': '1,450', 'image_url': url_for('static', filename='images/Tank Tops.png')},
+                    {'name': 'Stylish Wrap Top', 'price': '2,250', 'image_url': url_for('static', filename='images/Wrap Tops.png')},
+                    {'name': 'Formal Tunic', 'price': '3,150', 'image_url': url_for('static', filename='images/Tunics.png')},
+                    {'name': 'Evening Tube Top', 'price': '2,190', 'image_url': url_for('static', filename='images/Tube Tops.png')}
+                ] %}
+                
+                {% for product in sample_products %}
+                <div class="product-card" onclick="navigateToProduct('{{ loop.index }}')">
+                    <div class="product-image-container">
+                        <img src="{{ product.image_url }}" alt="{{ product.name }}" class="product-image primary">
+                        <img src="{{ product.image_url }}" alt="{{ product.name }}" class="product-image secondary">
+                        <div class="hover-actions">
+                            <button class="action-btn wishlist-btn" onclick="event.stopPropagation(); toggleProductCardWishlist('{{ loop.index }}', this)" title="Save Item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn cart-btn" onclick="event.stopPropagation(); addProductCardToCart('{{ loop.index }}'); navigateToProduct('{{ loop.index }}')" title="Buy Item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-info">
+                            <div class="product-left">
+                                <h3 class="product-name">{{ product.name }}</h3>
+                                <div class="color-swatches">
+                                    <div class="color-swatch active" style="background-color: #000000" onclick="event.stopPropagation(); selectProductCardColor(this, '#000000')"></div>
+                                    <div class="color-swatch" style="background-color: #FFFFFF" onclick="event.stopPropagation(); selectProductCardColor(this, '#FFFFFF')"></div>
+                                    <div class="color-swatch" style="background-color: #FF4757" onclick="event.stopPropagation(); selectProductCardColor(this, '#FF4757')"></div>
+                                </div>
+                                <div class="price-container">
+                                    <span class="price">₱{{ product.price }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+                <div class="view-more-container">
+                    <button class="view-more-btn" onclick="viewMoreProducts()">
+                        View More
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 0.5rem;">
+                            <polyline points="9,18 15,12 9,6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+<script src="{{ url_for('static', filename='js/_faqs_dropdown.js') }}"></script>
+<script>
+    // Simple FAQ toggle functionality for the dropdown
+    function toggleFaq(id) {
+        const faqElement = document.querySelector(`[data-faq-id="${id}"]`);
+        if (!faqElement) return;
+        
+        const answerElement = faqElement.querySelector('.faq-answer');
+        const expandBtn = faqElement.querySelector('.expand-btn');
+        
+        if (answerElement && expandBtn) {
+            answerElement.classList.toggle('show');
+            expandBtn.classList.toggle('expanded');
+        }
+    }
+
+    // Simple search functionality
+    function searchFaqs(query) {
+        const faqItems = document.querySelectorAll('.faq-item');
+        const searchTerm = query.toLowerCase();
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question').textContent.toLowerCase();
+            const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+            
+            if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+        
+        // Show/hide empty state
+        const visibleItems = document.querySelectorAll('.faq-item[style="display: block"], .faq-item:not([style*="display: none"])');
+        const emptyState = document.getElementById('emptyState');
+        
+        if (visibleItems.length === 0 && query.trim() !== '') {
+            if (!document.getElementById('searchEmptyState')) {
+                const searchEmpty = document.createElement('div');
+                searchEmpty.id = 'searchEmptyState';
+                searchEmpty.className = 'empty-state show';
+                searchEmpty.innerHTML = `
+                    <i class="fas fa-search"></i>
+                    <h3>No Results Found</h3>
+                    <p>No FAQs match your search query "${query}"</p>
+                `;
+                document.getElementById('faqsContainer').appendChild(searchEmpty);
+            }
+        } else {
+            const searchEmpty = document.getElementById('searchEmptyState');
+            if (searchEmpty) {
+                searchEmpty.remove();
+            }
+        }
+    }
+
+    // Initialize FAQs on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('FAQs dropdown initialized');
+        
+        // Add click handlers for FAQ expansion
+        document.querySelectorAll('.faq-header').forEach(header => {
+            header.addEventListener('click', function(e) {
+                if (!e.target.closest('.expand-btn')) {
+                    const faqId = this.closest('.faq-item').dataset.faqId;
+                    toggleFaq(faqId);
+                }
+            });
+        });
+    });
+</script>
