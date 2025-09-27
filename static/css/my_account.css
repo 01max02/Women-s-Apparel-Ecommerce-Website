@@ -1,0 +1,973 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.5;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    justify-content: center;
+    padding: 20px;
+}
+
+.account-layout {
+    display: flex;
+    width: 100%;
+    max-width: 1400px;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 280px;
+    background: white;
+    border-radius: 8px;
+    padding: 20px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+.user-header {
+    display: flex;
+    align-items: center;
+    padding: 0 20px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 20px;
+}
+
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    background: #1976d2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    margin-right: 12px;
+}
+
+.user-info h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.edit-profile-link {
+    display: flex;
+    align-items: center;
+    color: #666;
+    text-decoration: none;
+    font-size: 12px;
+    gap: 4px;
+}
+
+.edit-profile-link:hover {
+    color: #1976d2;
+}
+
+.nav-menu {
+    padding: 0 20px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    cursor: pointer;
+    color: #666;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    position: relative;
+}
+
+.nav-item:hover {
+    color: #333;
+}
+
+.nav-item.active {
+    color: #1976d2;
+}
+
+.nav-icon {
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.nav-item span {
+    flex: 1;
+    font-size: 14px;
+}
+
+.chevron {
+    margin-left: auto;
+    transition: transform 0.2s;
+}
+
+.nav-item.active .chevron {
+    transform: rotate(180deg);
+}
+
+.sub-menu {
+    margin-left: 32px;
+    margin-bottom: 16px;
+}
+
+.sub-item {
+    display: block;
+    padding: 8px 0;
+    color: #666;
+    text-decoration: none;
+    font-size: 13px;
+    border-left: 2px solid transparent;
+    padding-left: 12px;
+    margin-left: -12px;
+}
+
+.sub-item:hover {
+    color: #333;
+}
+
+.sub-item.active {
+    color: #e53e3e;
+    border-left-color: #e53e3e;
+    font-weight: 500;
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.content-wrapper {
+    background: white;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-header h1,
+.page-title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.page-header p {
+    color: #666;
+    font-size: 14px;
+}
+
+.profile-form-container {
+    display: flex;
+    gap: 60px;
+    max-width: 800px;
+}
+
+.form-section {
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background: white;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #1976d2;
+}
+
+.form-group input[readonly] {
+    background: #f8f8f8;
+    color: #666;
+}
+
+.form-note {
+    display: block;
+    margin-top: 4px;
+    color: #999;
+    font-size: 12px;
+}
+
+.email-field,
+.phone-field {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.masked-email {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f8f8f8;
+    color: #666;
+    font-size: 14px;
+}
+
+.change-btn,
+.add-btn {
+    padding: 8px 16px;
+    background: none;
+    border: none;
+    color: #1976d2;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.change-btn:hover,
+.add-btn:hover {
+    color: #1565c0;
+}
+
+.gender-options {
+    display: flex;
+    gap: 24px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #666;
+}
+
+.radio-option input[type="radio"] {
+    display: none;
+}
+
+.radio-custom {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    margin-right: 8px;
+    position: relative;
+    transition: border-color 0.2s;
+}
+
+.radio-option input[type="radio"]:checked + .radio-custom {
+    border-color: #1976d2;
+}
+
+.radio-option input[type="radio"]:checked + .radio-custom::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #1976d2;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.date-fields {
+    display: flex;
+    gap: 12px;
+}
+
+.date-fields select {
+    flex: 1;
+}
+
+.save-btn {
+    background: #8B5A96;
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.save-btn:hover {
+    background: #7A4D86;
+}
+
+/* Profile Picture Section */
+.profile-picture-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.current-avatar {
+    width: 100px;
+    height: 100px;
+    background: #1976d2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.select-image-btn {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+}
+
+.select-image-btn:hover {
+    border-color: #1976d2;
+    color: #1976d2;
+}
+
+.upload-requirements {
+    text-align: center;
+}
+
+.upload-requirements small {
+    display: block;
+    color: #999;
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-header h3 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
+
+.cancel-btn {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.cancel-btn:hover {
+    background: #f5f5f5;
+}
+
+.confirm-btn {
+    background: #8B5A96;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.confirm-btn:hover {
+    background: #7A4D86;
+}
+
+/* Account Sections */
+.account-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.account-section:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+}
+
+#profile-section {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.section-header h2 {
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+}
+
+.primary-btn {
+    background: #8B5A96;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+
+.primary-btn:hover {
+    background: #7A4D86;
+}
+
+/* Address Styles */
+.address-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.address-item {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 20px;
+    background: white;
+}
+
+.address-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.address-contact {
+    flex: 1;
+}
+
+.address-name {
+    font-weight: 600;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.address-phone {
+    color: #666;
+    font-size: 14px;
+}
+
+.address-full-name {
+    font-weight: 500;
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.address-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.edit-btn, .delete-btn {
+    background: none;
+    border: none;
+    color: #8B5A96;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    color: #7A4D86;
+}
+
+.delete-btn {
+    color: #e53e3e;
+}
+
+.delete-btn:hover {
+    color: #d32f2f;
+}
+
+.address-details {
+    margin-bottom: 16px;
+}
+
+.address-text {
+    color: #666;
+    font-size: 14px;
+    margin: 8px 0;
+}
+
+.address-tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.tag {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.default-tag {
+    background: #fff3e0;
+    color: #f57c00;
+    border: 1px solid #f57c00;
+}
+
+.pickup-tag {
+    background: #e3f2fd;
+    color: #1976d2;
+    border: 1px solid #1976d2;
+}
+
+.set-default-btn {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.set-default-btn:hover {
+    border-color: #8B5A96;
+    color: #8B5A96;
+}
+
+/* Privacy Settings */
+.privacy-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.privacy-title {
+    font-size: 16px;
+    color: #333;
+}
+
+.delete-account-btn {
+    background: #e53e3e;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.delete-account-btn:hover {
+    background: #d32f2f;
+}
+
+/* Notification Settings */
+.notification-group {
+    margin-bottom: 32px;
+}
+
+.notification-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.notification-description {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #8B5A96;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.notification-header h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+.notification-desc {
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.notification-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-left: 20px;
+}
+
+.notification-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.notification-subtitle {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.toggle-switch input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-label {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 24px;
+}
+
+.toggle-label:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input[type="checkbox"]:checked + .toggle-label {
+    background-color: #4caf50;
+}
+
+input[type="checkbox"]:checked + .toggle-label:before {
+    transform: translateX(20px);
+}
+
+/* Toast Notification */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4caf50;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 1001;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.toast.show {
+    transform: translateX(0);
+}
+
+.toast.error {
+    background: #f44336;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .account-layout {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .sidebar {
+        width: 100%;
+        position: relative;
+        top: auto;
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .content-wrapper {
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .profile-form-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    
+    .address-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .address-actions {
+        margin-top: 8px;
+    }
+    
+    .notification-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .privacy-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .gender-options {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .date-fields {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        padding: 10px;
+    }
+    
+    .content-wrapper {
+        padding: 15px;
+    }
+    
+    .section-header h2 {
+        font-size: 18px;
+    }
+    
+    .address-item {
+        padding: 16px;
+    }
+    
+    .notification-list {
+        margin-left: 0;
+    }
+    
+    .primary-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+}

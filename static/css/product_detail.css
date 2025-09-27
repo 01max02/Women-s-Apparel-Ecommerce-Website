@@ -172,7 +172,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: flex-start;
   position: relative;
+  padding: 20px;
 }
 
 .report-container {
@@ -249,16 +251,26 @@ body {
 /* Price Section */
 .price-section {
   margin-bottom: 35px;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .price-container {
   flex: 1;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  width: 100%;
+  display: flex;
 }
 
 .price-main {
-  font-size: 42px;
+  font-size: 52px;
   font-weight: 800;
-  color: #1a1a1a;
+  color: #000;
   line-height: 1;
   margin-bottom: 8px;
 }
@@ -299,9 +311,12 @@ body {
 .ratings-sales-section {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 12px;
   margin-top: 12px;
   padding-top: 8px;
+  width: 100%;
+  text-align: left;
 }
 
 .rating-container {
@@ -342,24 +357,35 @@ body {
   font-weight: 500;
 }
 
-/* Stock Section */
+/* Stock and Size Guide Section */
+.stock-size-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-left: 20px;
+  min-height: 48px;
+}
+
 .stock-section {
   display: flex;
   align-items: baseline;
-  gap: 4px;
+  gap: 6px;
+  text-align: right;
 }
 
 .stock-indicator {
   font-size: 24px;
-  font-weight: 700;
-  color: #333;
-  line-height: 1;
+  font-weight: 500;
+  color: #666;
+  line-height: 1.2;
 }
 
 .stock-label {
   font-size: 14px;
   font-weight: 500;
   color: #666;
+  line-height: 1.2;
 }
 
 .stock-indicator.in-stock {
@@ -374,9 +400,35 @@ body {
   color: #e74c3c;
 }
 
+.size-guide-section {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+}
+
+.size-guide-large {
+  color: #8e44ad;
+  text-decoration: underline;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  padding: 6px 0;
+  border: none;
+  background: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.size-guide-large:hover {
+  color: #6c3483;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
 /* Color Selection */
 .color-section {
-  margin-bottom: 35px;
+  margin-bottom: 45px;
 }
 
 .section-label {
@@ -384,6 +436,7 @@ body {
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 12px;
+  margin-top: 12px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -455,7 +508,7 @@ body {
 
 /* Size Selection */
 .size-section {
-  margin-bottom: 40px;
+  margin-bottom: 35px;
 }
 
 .size-options {
@@ -518,11 +571,10 @@ body {
   color: #8e44ad;
   text-decoration: underline;
   font-weight: 500;
-    padding-top: 20px;
 }
 
 .size-info span{
-  margin-top: -20px;
+  margin-top: 0;
 }
 
 .size-guide:hover {
@@ -534,14 +586,16 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 8px;
-  padding: 10px 12px;
+  padding: 15px 20px 15px 30px;
   background-color: #e3f2fd;
   border-radius: 8px;
   font-size: 13px;
   color: #1565c0;
   font-weight: 500;
   border: 1px solid #bbdefb;
+  width: 570px;
+  box-sizing: border-box;
+  margin-top: 20px;
 }
 
 .shipping-icon {
@@ -551,49 +605,56 @@ body {
 
 /* Quantity Section */
 .quantity-section {
-  margin-bottom: 35px;
-  margin-top: 10px;
+  margin-bottom: 28px;
 }
 
 .quantity-stock-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  min-height: 48px;
 }
 
 .quantity-label-group {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
 }
 
 .quantity-label-group .section-label {
   margin-bottom: 0;
   align-self: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
 .quantity-selector {
   display: flex;
   align-items: center;
   border: 2px solid #ddd;
-  border-radius: 8px;
+  border-radius: 12px;
   width: fit-content;
   background: white;
   overflow: hidden;
+  height: 48px;
 }
 
 .quantity-btn {
   background: none;
   border: none;
-  padding: 12px 16px;
+  padding: 0;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  color: #666;
+  color: #4a4a4a;
   border-right: 1px solid #eee;
+  width: 48px;
+  height: 48px;
+  font-size: 14px;
 }
 
 .quantity-btn:last-child {
@@ -603,7 +664,7 @@ body {
 
 .quantity-btn:hover {
   background-color: #f8f8f8;
-  color: #333;
+  color: #2a2a2a;
 }
 
 .quantity-btn:disabled {
@@ -613,18 +674,20 @@ body {
 
 .quantity-btn:disabled:hover {
   background-color: transparent;
-  color: #666;
+  color: #4a4a4a;
 }
 
 .quantity-input {
   border: none;
-  padding: 12px 16px;
+  padding: 0;
   text-align: center;
   font-size: 16px;
   font-weight: 600;
   width: 60px;
+  height: 48px;
   background: none;
   color: #333;
+  line-height: 1;
 }
 
 .quantity-input:focus {
@@ -645,28 +708,21 @@ body {
 
 /* Add to Bag Button */
 .add-to-bag-btn {
-  width: 100%;
-  background: #8e44ad;
-  color: #fff;
+  background-color: #8B5A96;
+  color: white;
   border: none;
-  padding: 24px;
+  padding: 15px 30px;
   font-size: 16px;
   font-weight: 600;
-  letter-spacing: 1px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 50px;
-  margin-top: auto;
+  margin-top: 20px;
+  width: 100%;
+  transition: background-color 0.2s;
 }
 
 .add-to-bag-btn:hover {
-  background: #6c3483;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(142, 68, 173, 0.3);
+  background-color: #7A4D86;
 }
 
 /* Expandable Sections */
@@ -733,7 +789,7 @@ body {
   padding: 16px 24px;
   background: none;
   border: none;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
   color: #666;
   cursor: pointer;
